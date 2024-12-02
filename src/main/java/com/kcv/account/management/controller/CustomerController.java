@@ -2,6 +2,7 @@ package com.kcv.account.management.controller;
 
 import java.util.List;
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import com.kcv.account.management.service.ICustomerService;
 
 @CrossOrigin
 @RestController
+@Log4j2
 public class CustomerController 
 {
 	@Autowired
@@ -34,7 +36,7 @@ public class CustomerController
 	public ResponseEntity<List<CustomerResponse>> getAllDetails() 
 	{
 		List<CustomerResponse> response = customerService.getAllCustomers();
-		
+		log.info("Fetching all the Customers");
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 	
