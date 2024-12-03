@@ -7,9 +7,11 @@ import com.kcv.account.management.dto.CustomerDTO;
 import com.kcv.account.management.dto.CustomerRequest;
 import com.kcv.account.management.dto.CustomerResponse;
 
-public interface ICustomerService  {
+public interface ICustomerService {
 
-	public CustomerResponse addCustomer(CustomerRequest request);
-	public List<CustomerResponse> getAllCustomers();
-	public CustomerResponse deleteCustomer(CustomerDTO request);
+    public CustomerResponse addCustomer(CustomerRequest request);
+
+    public List<CustomerResponse> getAllCustomers();
+
+    public CustomerResponse deleteCustomer(CustomerDTO request);
 }
