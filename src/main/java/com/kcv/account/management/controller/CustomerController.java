@@ -19,25 +19,21 @@ import com.kcv.account.management.service.ICustomerService;
 @CrossOrigin
 @RestController
 @Log4j2
-public class CustomerController 
-{
-	@Autowired
-	private ICustomerService customerService;
-	
-	@PostMapping("/addCustomer")
-	public ResponseEntity<CustomerResponse> addData(@RequestBody CustomerRequest request) 
-	{
-		CustomerResponse response = customerService.addCustomer(request);
-		
-		return new ResponseEntity<>(response, HttpStatus.OK);
-	}
-	
-	@GetMapping("/getAllCustomers")
-	public ResponseEntity<List<CustomerResponse>> getAllDetails() 
-	{
-		List<CustomerResponse> response = customerService.getAllCustomers();
-		log.info("Fetching all the Customers");
-		return new ResponseEntity<>(response, HttpStatus.OK);
-	}
-	
+public class CustomerController {
+    @Autowired
+    private ICustomerService customerService;
+
+    @PostMapping("/addCustomer")
+    public ResponseEntity<CustomerResponse> addData(@RequestBody CustomerRequest request) {
+        CustomerResponse response = customerService.addCustomer(request);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllCustomers")
+    public ResponseEntity<List<CustomerResponse>> getAllDetails() {
+        List<CustomerResponse> response = customerService.getAllCustomers();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
 }

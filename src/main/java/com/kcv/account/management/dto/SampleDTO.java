@@ -11,23 +11,22 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "DEMO_PROJECT")
-public class SampleDTO
-{
-	@Id
-	@GeneratedValue
-	private Integer id;
-	
-	@Column(name = "NAME")
-	private String name;
-	
-	@Column(name = "GENDER")
-	private String gender;
-	
-	@Column(name = "MOBILE_NUMBER")
-	private String mobileNo;
-	
-	@Column(name = "AGE")
-	private String age;
-	
-	
+public class SampleDTO {
+    @Id
+    @GeneratedValue
+    private Integer id;
+
+    @Column(name = "NAME")
+    private String name;
+
+    @Column(name = "GENDER")
+    private String gender;
+
+    @Column(name = "MOBILE_NUMBER")
+    private String mobileNo;
+
+    @Column(name = "AGE")
+    private String age;
+
+
 }

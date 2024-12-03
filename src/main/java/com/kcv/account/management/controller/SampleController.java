@@ -18,32 +18,28 @@ import com.kcv.account.management.service.ISampleService;
 
 @CrossOrigin
 @RestController
-public class SampleController 
-{
-	@Autowired
-	private ISampleService demoProjectService;
-	
-	@PostMapping("/addData")
-	public ResponseEntity<SampleResponse> addData(@RequestBody SampleRequest request) 
-	{
-		SampleResponse response = demoProjectService.addData(request);
-		
-		return new ResponseEntity<>(response, HttpStatus.OK);
-	}
-	
-	@GetMapping("/getAllDetails")
-	public ResponseEntity<List<SampleDTO>> getAllDetails() 
-	{
-		List<SampleDTO> response = demoProjectService.getAllDetails();
-		
-		return new ResponseEntity<>(response, HttpStatus.OK);
-	}
-	
-	@PostMapping("/deleteData")
-	public ResponseEntity<SampleResponse> deleteData(@RequestBody SampleRequest request) 
-	{
-		SampleResponse response = demoProjectService.deleteData(request);
-		
-		return new ResponseEntity<>(response, HttpStatus.OK);
-	}
+public class SampleController {
+    @Autowired
+    private ISampleService demoProjectService;
+
+    @PostMapping("/addData")
+    public ResponseEntity<SampleResponse> addData(@RequestBody SampleRequest request) {
+        SampleResponse response = demoProjectService.addData(request);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllDetails")
+    public ResponseEntity<List<SampleDTO>> getAllDetails() {
+        List<SampleDTO> response = demoProjectService.getAllDetails();
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping("/deleteData")
+    public ResponseEntity<SampleResponse> deleteData(@RequestBody SampleRequest request) {
+        SampleResponse response = demoProjectService.deleteData(request);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

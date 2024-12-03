@@ -5,14 +5,13 @@ import java.time.LocalDate;
 import lombok.Data;
 
 @Data
-public class CustomerRequest
-{
-	
-	private String customerName;
-	private CustomerGenderEnum gender; 
-	private String mobileNumber;
-	private String 	username;
-	private LocalDate installationDate;
-	private CustomerStatusEnum status;
-	
+public class CustomerRequest {
+
+    private String customerName;
+    private CustomerGenderEnum gender;
+    private String mobileNumber;
+    private String username;
+    private LocalDate installationDate;
+    private CustomerStatusEnum status;
+
 }
