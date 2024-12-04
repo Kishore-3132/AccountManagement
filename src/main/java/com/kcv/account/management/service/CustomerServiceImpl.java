@@ -69,5 +69,27 @@ public class CustomerServiceImpl implements ICustomerService {
         return null;
     }
 
+    @Override
+    public CustomerResponse editCustomer(CustomerRequest request) {
+        CustomerDTO customer = new CustomerDTO();
+        customer.setId(request.getId());
+        customer.setCustomerName(request.getCustomerName());
+        customer.setGender(request.getGender().name());
+        customer.setInstallationDate(request.getInstallationDate());
+        customer.setMobileNumber(request.getMobileNumber());
+        customer.setStatus(request.getStatus().name());
+        customer.setUsername(request.getUsername());
+
+        customer = customerRepository.save(customer);
+
+        CustomerResponse customerResponse = new CustomerResponse();
+
+        BeanUtils.copyProperties(customer, customerResponse);
+        customerResponse.setGender(CustomerGenderEnum.valueOf(customer.getGender()));
+        customerResponse.setStatus(CustomerStatusEnum.valueOf(customer.getStatus()));
+
+        return customerResponse;
+    }
+
 
 }

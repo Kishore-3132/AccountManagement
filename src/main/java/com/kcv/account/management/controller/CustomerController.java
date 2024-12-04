@@ -6,11 +6,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.kcv.account.management.dto.CustomerRequest;
 import com.kcv.account.management.dto.CustomerResponse;
@@ -24,7 +20,7 @@ public class CustomerController {
     private ICustomerService customerService;
 
     @PostMapping("/addCustomer")
-    public ResponseEntity<CustomerResponse> addData(@RequestBody CustomerRequest request) {
+    public ResponseEntity<CustomerResponse> addCustomer(@RequestBody CustomerRequest request) {
         CustomerResponse response = customerService.addCustomer(request);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
@@ -33,6 +29,12 @@ public class CustomerController {
     @GetMapping("/getAllCustomers")
     public ResponseEntity<List<CustomerResponse>> getAllDetails() {
         List<CustomerResponse> response = customerService.getAllCustomers();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    @PutMapping("/editCustomer/{id}")
+    public ResponseEntity<CustomerResponse> editCustomer(@RequestBody CustomerRequest request,@PathVariable Integer id) {
+        request.setId(id);
+        CustomerResponse response = customerService.editCustomer(request);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

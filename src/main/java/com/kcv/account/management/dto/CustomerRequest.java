@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 public class CustomerRequest {
 
+    private Integer id;
     private String customerName;
     private CustomerGenderEnum gender;
     private String mobileNumber;

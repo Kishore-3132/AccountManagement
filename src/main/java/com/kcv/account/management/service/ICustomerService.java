@@ -14,4 +14,6 @@ public interface ICustomerService {
     public List<CustomerResponse> getAllCustomers();
 
     public CustomerResponse deleteCustomer(CustomerDTO request);
+
+    public CustomerResponse editCustomer(CustomerRequest request);
 }
