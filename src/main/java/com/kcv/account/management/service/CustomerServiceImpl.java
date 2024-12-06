@@ -45,7 +45,7 @@ public class CustomerServiceImpl implements ICustomerService {
     @Override
     public List<CustomerResponse> getAllCustomers() {
         log.info("Fetching all the Customers");
-        List<CustomerResponse> customerList = new ArrayList<CustomerResponse>();
+        List<CustomerResponse> customerList = new ArrayList<>();
 
         List<CustomerDTO> listOfCustomer = customerRepository.findAll();
 
