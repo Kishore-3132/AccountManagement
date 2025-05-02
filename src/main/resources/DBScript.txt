@@ -1,0 +1,5 @@
+CUSTOMER_INSERT:
+INSERT INTO CUSTOMER (ID, CUSTOMER_ID, CUSTOMER_NAME, GENDER, INSTALLATION_DATE, MOBILE_NUMBER, STATUS) VALUES (2, 'kcv_kishorekumar.d', 'Kishore Kumar', 'MALE', '2024-05-02', '9940036876', 'ACTIVE');
+
+USER_INSERT:
+INSERT INTO USER_DETAILS (id, gender, mobile_number, password, status, user_full_name, user_name) VALUES (1, 'MALE', '9876543210', 'Pass@123', 'ACTIVE', 'Admin User', 'tic293');
