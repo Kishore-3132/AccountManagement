@@ -1,4 +1,4 @@
-package com.kcv.account.management.dto.common;
+package com.kcv.account.management.dto.users;
 
 import com.kcv.account.management.dto.enums.AccountStatusEnum;
 import com.kcv.account.management.dto.enums.GenderEnum;

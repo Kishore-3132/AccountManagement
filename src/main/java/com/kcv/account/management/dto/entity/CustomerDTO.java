@@ -37,5 +37,7 @@ public class CustomerDTO {
     @Column(name = "STATUS", nullable = false)
     private String status;
 
+    @Column(name = "Address", nullable = false)
+    private String address;
 
 }

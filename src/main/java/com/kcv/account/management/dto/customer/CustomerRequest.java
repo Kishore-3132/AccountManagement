@@ -1,4 +1,4 @@
-package com.kcv.account.management.dto.common;
+package com.kcv.account.management.dto.customer;
 
 import java.time.LocalDate;
 
@@ -16,5 +16,6 @@ public class CustomerRequest {
     private String customerId;
     private LocalDate installationDate;
     private AccountStatusEnum status;
+    private String address;
 
 }

@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.kcv.account.management.dto.entity.CustomerDTO;
 import com.kcv.account.management.dto.enums.GenderEnum;
-import com.kcv.account.management.dto.common.CustomerRequest;
-import com.kcv.account.management.dto.common.CustomerResponse;
+import com.kcv.account.management.dto.customer.CustomerRequest;
+import com.kcv.account.management.dto.customer.CustomerResponse;
 import com.kcv.account.management.dto.enums.AccountStatusEnum;
 import com.kcv.account.management.repository.ICustomerRepository;
 
@@ -30,7 +30,7 @@ public class CustomerServiceImpl implements ICustomerService {
         customer.setMobileNumber(request.getMobileNumber());
         customer.setStatus(request.getStatus().name());
         customer.setCustomerId(request.getCustomerId());
-
+        customer.setAddress(request.getCustomerId());
         customer = customerRepository.save(customer);
 
         CustomerResponse customerResponse = new CustomerResponse();
@@ -79,7 +79,7 @@ public class CustomerServiceImpl implements ICustomerService {
         customer.setMobileNumber(request.getMobileNumber());
         customer.setStatus(request.getStatus().name());
         customer.setCustomerId(request.getCustomerId());
-
+        customer.setAddress(request.getCustomerId());
         customer = customerRepository.save(customer);
 
         CustomerResponse customerResponse = new CustomerResponse();
