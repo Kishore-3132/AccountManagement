@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kcv.account.management.dto.CustomerDTO;
-import com.kcv.account.management.dto.CustomerGenderEnum;
+import com.kcv.account.management.dto.enums.GenderEnum;
 import com.kcv.account.management.dto.CustomerRequest;
 import com.kcv.account.management.dto.CustomerResponse;
-import com.kcv.account.management.dto.CustomerStatusEnum;
+import com.kcv.account.management.dto.enums.AccountStatusEnum;
 import com.kcv.account.management.repository.ICustomerRepository;
 
 @Service
@@ -29,15 +29,15 @@ public class CustomerServiceImpl implements ICustomerService {
         customer.setInstallationDate(request.getInstallationDate());
         customer.setMobileNumber(request.getMobileNumber());
         customer.setStatus(request.getStatus().name());
-        customer.setUsername(request.getUsername());
+        customer.setCustomerId(request.getCustomerId());
 
         customer = customerRepository.save(customer);
 
         CustomerResponse customerResponse = new CustomerResponse();
 
         BeanUtils.copyProperties(customer, customerResponse);
-        customerResponse.setGender(CustomerGenderEnum.valueOf(customer.getGender()));
-        customerResponse.setStatus(CustomerStatusEnum.valueOf(customer.getStatus()));
+        customerResponse.setGender(GenderEnum.valueOf(customer.getGender()));
+        customerResponse.setStatus(AccountStatusEnum.valueOf(customer.getStatus()));
 
         return customerResponse;
     }
@@ -53,8 +53,8 @@ public class CustomerServiceImpl implements ICustomerService {
             CustomerResponse customerResponse = new CustomerResponse();
 
             BeanUtils.copyProperties(customer, customerResponse);
-            customerResponse.setGender(CustomerGenderEnum.valueOf(customer.getGender()));
-            customerResponse.setStatus(CustomerStatusEnum.valueOf(customer.getStatus()));
+            customerResponse.setGender(GenderEnum.valueOf(customer.getGender()));
+            customerResponse.setStatus(AccountStatusEnum.valueOf(customer.getStatus()));
 
             customerList.add(customerResponse);
         });
@@ -78,15 +78,15 @@ public class CustomerServiceImpl implements ICustomerService {
         customer.setInstallationDate(request.getInstallationDate());
         customer.setMobileNumber(request.getMobileNumber());
         customer.setStatus(request.getStatus().name());
-        customer.setUsername(request.getUsername());
+        customer.setCustomerId(request.getCustomerId());
 
         customer = customerRepository.save(customer);
 
         CustomerResponse customerResponse = new CustomerResponse();
 
         BeanUtils.copyProperties(customer, customerResponse);
-        customerResponse.setGender(CustomerGenderEnum.valueOf(customer.getGender()));
-        customerResponse.setStatus(CustomerStatusEnum.valueOf(customer.getStatus()));
+        customerResponse.setGender(GenderEnum.valueOf(customer.getGender()));
+        customerResponse.setStatus(AccountStatusEnum.valueOf(customer.getStatus()));
 
         return customerResponse;
     }

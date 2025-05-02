@@ -28,8 +28,8 @@ public class CustomerDTO {
     @Column(name = "MOBILE_NUMBER", nullable = false)
     private String mobileNumber;
 
-    @Column(name = "USERNAME", nullable = false)
-    private String username;
+    @Column(name = "CUSTOMER_ID", nullable = false)
+    private String customerId;
 
     @Column(name = "INSTALLATION_DATE", nullable = false)
     private LocalDate installationDate;
