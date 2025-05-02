@@ -8,7 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kcv.account.management.dto.CustomerDTO;
+import com.kcv.account.management.dto.entity.CustomerDTO;
 import com.kcv.account.management.dto.enums.GenderEnum;
 import com.kcv.account.management.dto.common.CustomerRequest;
 import com.kcv.account.management.dto.common.CustomerResponse;

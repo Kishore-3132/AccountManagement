@@ -1,4 +1,4 @@
-package com.kcv.account.management.dto;
+package com.kcv.account.management.dto.entity;
 
 import lombok.Data;
 

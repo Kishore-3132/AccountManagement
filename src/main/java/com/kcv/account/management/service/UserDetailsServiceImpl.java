@@ -1,6 +1,6 @@
 package com.kcv.account.management.service;
 
-import com.kcv.account.management.dto.UserDetailsDTO;
+import com.kcv.account.management.dto.entity.UserDetailsDTO;
 import com.kcv.account.management.dto.common.UserDetailsRequest;
 import com.kcv.account.management.dto.common.UserDetailsResponse;
 import com.kcv.account.management.dto.enums.AccountStatusEnum;
@@ -45,7 +45,7 @@ public class UserDetailsServiceImpl implements IUserDetailsService {
 
     @Override
     public List<UserDetailsResponse> getAllUsers() {
-        log.info("Fetching all the UserDetailss");
+        log.info("Fetching all the UserDetails");
         List<UserDetailsResponse> userList = new ArrayList<>();
 
         List<UserDetailsDTO> listOfUserDetails = userRepository.findAll();
