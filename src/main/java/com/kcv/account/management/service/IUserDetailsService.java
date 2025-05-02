@@ -2,8 +2,8 @@ package com.kcv.account.management.service;
 
 
 import com.kcv.account.management.dto.UserDetailsDTO;
-import com.kcv.account.management.dto.UserDetailsRequest;
-import com.kcv.account.management.dto.UserDetailsResponse;
+import com.kcv.account.management.dto.common.UserDetailsRequest;
+import com.kcv.account.management.dto.common.UserDetailsResponse;
 
 import java.util.List;
 

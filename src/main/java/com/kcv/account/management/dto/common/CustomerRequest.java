@@ -1,19 +1,20 @@
-package com.kcv.account.management.dto;
+package com.kcv.account.management.dto.common;
+
+import java.time.LocalDate;
 
 import com.kcv.account.management.dto.enums.AccountStatusEnum;
 import com.kcv.account.management.dto.enums.GenderEnum;
-import com.kcv.account.management.dto.enums.ROLEEnum;
 import lombok.Data;
 
 @Data
-public class UserDetailsRequest {
+public class CustomerRequest {
 
-    private Integer userId;
-    private String userName;
+    private Integer id;
+    private String customerName;
     private GenderEnum gender;
     private String mobileNumber;
-    private String userFullName;
+    private String customerId;
+    private LocalDate installationDate;
     private AccountStatusEnum status;
-    private ROLEEnum role;
 
 }

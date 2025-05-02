@@ -4,8 +4,8 @@ package com.kcv.account.management.service;
 import java.util.List;
 
 import com.kcv.account.management.dto.CustomerDTO;
-import com.kcv.account.management.dto.CustomerRequest;
-import com.kcv.account.management.dto.CustomerResponse;
+import com.kcv.account.management.dto.common.CustomerRequest;
+import com.kcv.account.management.dto.common.CustomerResponse;
 
 public interface ICustomerService {
 

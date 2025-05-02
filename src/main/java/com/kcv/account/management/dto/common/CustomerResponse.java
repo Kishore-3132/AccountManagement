@@ -1,4 +1,4 @@
-package com.kcv.account.management.dto;
+package com.kcv.account.management.dto.common;
 
 import java.time.LocalDate;
 
@@ -7,7 +7,7 @@ import com.kcv.account.management.dto.enums.GenderEnum;
 import lombok.Data;
 
 @Data
-public class CustomerRequest {
+public class CustomerResponse {
 
     private Integer id;
     private String customerName;

@@ -8,8 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.kcv.account.management.dto.CustomerRequest;
-import com.kcv.account.management.dto.CustomerResponse;
+import com.kcv.account.management.dto.common.CustomerRequest;
+import com.kcv.account.management.dto.common.CustomerResponse;
 import com.kcv.account.management.service.ICustomerService;
 
 @CrossOrigin

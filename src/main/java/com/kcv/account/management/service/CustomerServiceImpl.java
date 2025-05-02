@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.kcv.account.management.dto.CustomerDTO;
 import com.kcv.account.management.dto.enums.GenderEnum;
-import com.kcv.account.management.dto.CustomerRequest;
-import com.kcv.account.management.dto.CustomerResponse;
+import com.kcv.account.management.dto.common.CustomerRequest;
+import com.kcv.account.management.dto.common.CustomerResponse;
 import com.kcv.account.management.dto.enums.AccountStatusEnum;
 import com.kcv.account.management.repository.ICustomerRepository;
 

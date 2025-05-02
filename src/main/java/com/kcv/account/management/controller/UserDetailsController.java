@@ -1,7 +1,7 @@
 package com.kcv.account.management.controller;
 
-import com.kcv.account.management.dto.UserDetailsRequest;
-import com.kcv.account.management.dto.UserDetailsResponse;
+import com.kcv.account.management.dto.common.UserDetailsRequest;
+import com.kcv.account.management.dto.common.UserDetailsResponse;
 import com.kcv.account.management.service.IUserDetailsService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
