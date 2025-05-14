@@ -14,6 +14,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @Log4j2
+@RequestMapping("/user")
 public class UserDetailsController {
     @Autowired
     private IUserDetailsService userService;

@@ -25,7 +25,7 @@ import java.util.List;
 @Log4j2
 public class PaymentsServiceImpl implements IPaymentsService {
     @Autowired
-    private IPaymentsRepository userRepository;
+    private IPaymentsRepository paymentsRepository;
 
     @Override
     public PaymentsResponse addPayments(PaymentsRequest request) {
@@ -36,7 +36,7 @@ public class PaymentsServiceImpl implements IPaymentsService {
     public List<PaymentsResponse> getAllPayments() {
         log.info("Fetching all the Payments");
         List<PaymentsResponse> paymentsList = new ArrayList<>();
-        List<PaymentsDTO> listOfPayments = userRepository.findAll();
+        List<PaymentsDTO> listOfPayments = paymentsRepository.findAll();
         listOfPayments.forEach(payments -> {
             PaymentsResponse paymentsResponse = new PaymentsResponse();
             PackageResponse packageResponse = new PackageResponse();
@@ -55,7 +55,9 @@ public class PaymentsServiceImpl implements IPaymentsService {
     }
 
     @Override
-    public PaymentsResponse deletePayments(PaymentsDTO request) {
-        return null;
+    public PaymentsResponse deletePayments(PaymentsRequest request) {
+        PaymentsResponse paymentsResponse = new PaymentsResponse();
+        paymentsRepository.deleteById(request.getPaymentId());
+        return paymentsResponse;
     }
 }

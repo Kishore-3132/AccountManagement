@@ -14,6 +14,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @Log4j2
+@RequestMapping("/payments")
 public class PaymentsController {
     @Autowired
     private IPaymentsService paymentsService;
@@ -28,6 +29,15 @@ public class PaymentsController {
     @GetMapping("/getAllPayments")
     public ResponseEntity<List<PaymentsResponse>> getAllDetails() {
         List<PaymentsResponse> response = paymentsService.getAllPayments();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/deletePayments/{id}")
+    public ResponseEntity<PaymentsResponse> deletePayment(@PathVariable Integer id) {
+        PaymentsRequest paymentsRequest = new PaymentsRequest();
+        paymentsRequest.setPaymentId(id);
+        PaymentsResponse response = paymentsService.deletePayments(paymentsRequest);
+
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

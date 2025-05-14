@@ -15,6 +15,7 @@ import com.kcv.account.management.service.ICustomerService;
 @CrossOrigin
 @RestController
 @Log4j2
+@RequestMapping("/customer")
 public class CustomerController {
     @Autowired
     private ICustomerService customerService;

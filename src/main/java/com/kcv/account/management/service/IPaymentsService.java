@@ -2,7 +2,6 @@ package com.kcv.account.management.service;
 
 
 
-import com.kcv.account.management.dto.entity.PaymentsDTO;
 import com.kcv.account.management.dto.payments.PaymentsRequest;
 import com.kcv.account.management.dto.payments.PaymentsResponse;
 
@@ -14,7 +13,7 @@ public interface IPaymentsService {
 
     public List<PaymentsResponse> getAllPayments();
 
-    public PaymentsResponse deletePayments(PaymentsDTO request);
+    public PaymentsResponse deletePayments(PaymentsRequest request);
 
 //    public PaymentsResponse editPayments(PaymentsRequest request);
 }
