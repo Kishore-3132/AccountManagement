@@ -11,7 +11,7 @@ public interface ICustomerService {
 
     public CustomerResponse addCustomer(CustomerRequest request);
 
-    public List<CustomerResponse> getAllCustomers();
+    public CustomerResponse getAllCustomers();
 
     public CustomerResponse deleteCustomer(CustomerDTO request);
 

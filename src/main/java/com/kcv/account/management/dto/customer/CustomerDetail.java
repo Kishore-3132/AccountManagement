@@ -1,15 +1,13 @@
 package com.kcv.account.management.dto.customer;
 
-import java.time.LocalDate;
-import java.util.List;
-
-import com.kcv.account.management.dto.common.CommonResponse;
 import com.kcv.account.management.dto.enums.AccountStatusEnum;
 import com.kcv.account.management.dto.enums.GenderEnum;
 import lombok.Data;
 
+import java.time.LocalDate;
+
 @Data
-public class CustomerResponse extends CommonResponse {
+public class CustomerDetail {
 
     private Integer id;
     private String customerName;
@@ -19,6 +17,5 @@ public class CustomerResponse extends CommonResponse {
     private LocalDate installationDate;
     private AccountStatusEnum status;
     private String address;
-    private List<CustomerDetail> customer;
 
 }

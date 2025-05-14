@@ -1,5 +1,6 @@
 package com.kcv.account.management.dto.payments;
 
+import com.kcv.account.management.dto.common.CommonResponse;
 import com.kcv.account.management.dto.packages.PackageResponse;
 import lombok.Data;
 
@@ -8,7 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
-public class PaymentsResponse {
+public class PaymentsResponse extends CommonResponse {
 
     private Integer paymentId;
     private BigDecimal amount;

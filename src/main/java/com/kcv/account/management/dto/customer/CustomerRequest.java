@@ -2,12 +2,13 @@ package com.kcv.account.management.dto.customer;
 
 import java.time.LocalDate;
 
+import com.kcv.account.management.dto.common.CommonRequest;
 import com.kcv.account.management.dto.enums.AccountStatusEnum;
 import com.kcv.account.management.dto.enums.GenderEnum;
 import lombok.Data;
 
 @Data
-public class CustomerRequest {
+public class CustomerRequest extends CommonRequest {
 
     private Integer id;
     private String customerName;
