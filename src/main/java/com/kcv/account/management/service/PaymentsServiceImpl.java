@@ -73,8 +73,21 @@ public class PaymentsServiceImpl implements IPaymentsService {
 
     @Override
     public PaymentsResponse deletePayments(PaymentsRequest request) {
+        log.info("::: Payment Deletion Start :::");
         PaymentsResponse paymentsResponse = new PaymentsResponse();
-        paymentsRepository.deleteById(request.getPaymentId());
+        try {
+            paymentsRepository.deleteById(request.getPaymentId());
+            paymentsResponse.setResponseMessage("SUCCESS");
+            paymentsResponse.setResponseCode("000");
+            paymentsResponse.setSuccess(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.info("::: Error Occurred while Fetching the Payments :::");
+            paymentsResponse.setResponseMessage(e.getMessage());
+            paymentsResponse.setResponseCode(ErrorCodeConstants.PaymentErrorCode.PAYMENT_DELETION_FAILED);
+            paymentsResponse.setSuccess(false);
+        }
+        log.info("::: Payment Deletion End :::");
         return paymentsResponse;
     }
 }

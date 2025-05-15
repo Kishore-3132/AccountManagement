@@ -9,11 +9,37 @@ INSERT INTO PACKAGE (id, package_amount, package_amount_incl_gst, package_descri
 
 
 ERROR CODE AND DESCRIPTION:
-INSERT INTO ERROR_MAPPING (id,code, description) VALUES ('1', 'CUST_001', 'Error Occurred While Customer Creation Please try again');
-INSERT INTO ERROR_MAPPING (id,code, description) VALUES ('2', 'CUST_002', 'Error Occurred While Fetching customer Please try again');
-INSERT INTO ERROR_MAPPING (id,code, description) VALUES ('3', 'CUST_003', 'Error Occurred While Customer Editing Please try again');
-INSERT INTO ERROR_MAPPING (id,code, description) VALUES ('4', 'CUST_004', 'Error Occurred While Customer Deletion Please try again');
-INSERT INTO ERROR_MAPPING (id,code, description) VALUES ('5', 'CUST_005', 'Customer not found');
-INSERT INTO ERROR_MAPPING (id,code, description) VALUES ('6', 'CUST_006', 'No customer available at this moment');
-INSERT INTO ERROR_MAPPING (id,code, description) VALUES ('7', 'GEN_9999', 'Unable to process your request Please try again');
+
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'CUST_001', 'Error Occurred While Customer Creation Please try again');
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'CUST_002', 'Error Occurred While Fetching customer Please try again');
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'CUST_003', 'Error Occurred While Customer Editing Please try again');
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'CUST_004', 'Error Occurred While Customer Deletion Please try again');
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'CUST_005', 'Customer not found');
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'CUST_006', 'No customer available at this moment');
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'GEN_9999', 'Unable to process your request Please try again');
+
+-- Inserting PackageErrorCode values
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'PCKG_001', 'Package creation failed');
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'PCKG_002', 'Fetching package failed');
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'PCKG_003', 'Package editing failed');
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'PCKG_004', 'Package deletion failed');
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'PCKG_005', 'Package not found');
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'PCKG_006', 'No package available');
+
+-- Inserting UserErrorCode values
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'USR_001', 'User creation failed');
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'USR_002', 'Fetching user failed');
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'USR_003', 'User editing failed');
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'USR_004', 'User deletion failed');
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'USR_005', 'User not found');
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'USR_006', 'No user available');
+
+-- Inserting PaymentErrorCode values
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'PYMT_001', 'Payment creation failed');
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'PYMT_002', 'Fetching payment failed');
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'PYMT_003', 'Payment editing failed');
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'PYMT_004', 'Payment deletion failed');
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'PYMT_005', 'Payment not found');
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'PYMT_006', 'No payment available');
+
 
