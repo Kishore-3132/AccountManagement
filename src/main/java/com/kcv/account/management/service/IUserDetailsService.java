@@ -11,7 +11,7 @@ public interface IUserDetailsService {
 
     public UserDetailsResponse addUser(UserDetailsRequest request);
 
-    public List<UserDetailsResponse> getAllUsers();
+    public UserDetailsResponse getAllUsers();
 
     public UserDetailsResponse deleteUser(UserDetailsDTO request);
 

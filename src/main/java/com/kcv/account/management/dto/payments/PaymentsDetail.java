@@ -5,12 +5,10 @@ import com.kcv.account.management.dto.packages.PackageResponse;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
-public class PaymentsResponse extends CommonResponse{
+public class PaymentsDetail extends CommonResponse {
 
     private Integer paymentId;
     private BigDecimal amount;
@@ -18,6 +16,5 @@ public class PaymentsResponse extends CommonResponse{
     private String modeOfPayment;
     private String referenceNumber;
     private PackageResponse packageInfo;
-    private List<PaymentsDetail> payments;
 
 }

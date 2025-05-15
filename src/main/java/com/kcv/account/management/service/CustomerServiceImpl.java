@@ -83,6 +83,7 @@ public class CustomerServiceImpl implements ICustomerService {
             }
 
         } catch (Exception e) {
+            e.printStackTrace();
             log.info("::: Error Occurred while Fetching the Customer :::");
             response.setResponseMessage(e.getMessage());
             response.setResponseCode(ErrorCodeConstants.CustomerErrorCode.FETCH_CUSTOMER_FAILED);

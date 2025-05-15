@@ -11,7 +11,7 @@ public interface IPaymentsService {
 
     public PaymentsResponse addPayments(PaymentsRequest request);
 
-    public List<PaymentsResponse> getAllPayments();
+    public PaymentsResponse getAllPayments();
 
     public PaymentsResponse deletePayments(PaymentsRequest request);
 

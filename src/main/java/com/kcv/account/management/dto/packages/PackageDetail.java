@@ -1,16 +1,12 @@
 package com.kcv.account.management.dto.packages;
 
 import com.kcv.account.management.dto.common.CommonResponse;
-import com.kcv.account.management.dto.enums.AccountStatusEnum;
-import com.kcv.account.management.dto.enums.GenderEnum;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.List;
 
 @Data
-public class PackageResponse extends CommonResponse {
+public class PackageDetail{
 
     private Integer packageId;
     private String packageName;
@@ -18,5 +14,4 @@ public class PackageResponse extends CommonResponse {
     private Integer packageSpeed;
     private BigDecimal packageAmount;
     private BigDecimal packageAmountIncludingGST;
-    private List<PackageDetail> packages;
 }

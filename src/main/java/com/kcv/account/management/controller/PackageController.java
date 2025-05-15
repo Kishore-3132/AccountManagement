@@ -27,8 +27,8 @@ public class PackageController {
     }
 
     @GetMapping("/getAllPackages")
-    public ResponseEntity<List<PackageResponse>> getAllDetails() {
-        List<PackageResponse> response = packageService.getAllPackages();
+    public ResponseEntity<PackageResponse> getAllDetails() {
+        PackageResponse response = packageService.getAllPackages();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
     @PutMapping("/editPackage/{id}")

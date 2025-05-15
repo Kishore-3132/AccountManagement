@@ -11,7 +11,7 @@ public interface IPackageService {
 
     public PackageResponse addPackage(PackageRequest request);
 
-    public List<PackageResponse> getAllPackages();
+    public PackageResponse getAllPackages();
 
     public PackageResponse deletePackage(PackageDTO request);
 

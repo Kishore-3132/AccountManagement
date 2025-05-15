@@ -1,17 +1,12 @@
 package com.kcv.account.management.service;
 
+import com.kcv.account.management.dto.common.ErrorCodeConstants;
 import com.kcv.account.management.dto.entity.PaymentsDTO;
-import com.kcv.account.management.dto.entity.UserDetailsDTO;
-import com.kcv.account.management.dto.enums.AccountStatusEnum;
-import com.kcv.account.management.dto.enums.GenderEnum;
-import com.kcv.account.management.dto.enums.ROLEEnum;
 import com.kcv.account.management.dto.packages.PackageResponse;
+import com.kcv.account.management.dto.payments.PaymentsDetail;
 import com.kcv.account.management.dto.payments.PaymentsRequest;
 import com.kcv.account.management.dto.payments.PaymentsResponse;
-import com.kcv.account.management.dto.users.UserDetailsRequest;
-import com.kcv.account.management.dto.users.UserDetailsResponse;
 import com.kcv.account.management.repository.IPaymentsRepository;
-import com.kcv.account.management.repository.IUserDetailsRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,25 +28,46 @@ public class PaymentsServiceImpl implements IPaymentsService {
     }
 
     @Override
-    public List<PaymentsResponse> getAllPayments() {
-        log.info("Fetching all the Payments");
-        List<PaymentsResponse> paymentsList = new ArrayList<>();
-        List<PaymentsDTO> listOfPayments = paymentsRepository.findAll();
-        listOfPayments.forEach(payments -> {
-            PaymentsResponse paymentsResponse = new PaymentsResponse();
-            PackageResponse packageResponse = new PackageResponse();
-            packageResponse.setPackageId(payments.getPackageInfo().getId());
-            packageResponse.setPackageName(payments.getPackageInfo().getPackageName());
-            packageResponse.setPackageAmount(payments.getPackageInfo().getPackageAmount());
-            packageResponse.setPackageAmountIncludingGST(payments.getPackageInfo().getPackageAmountIncludingGST());
-            packageResponse.setPackageDescription(payments.getPackageInfo().getPackageDescription());
-            packageResponse.setPackageSpeed(payments.getPackageInfo().getPackageSpeed());
-            paymentsResponse.setPaymentId(payments.getId());
-            paymentsResponse.setPackageInfo(packageResponse);
-            BeanUtils.copyProperties(payments, paymentsResponse);
-            paymentsList.add(paymentsResponse);
-        });
-        return paymentsList;
+    public PaymentsResponse getAllPayments() {
+        log.info("::: Fetching Payments Start :::");
+        PaymentsResponse response = new PaymentsResponse();
+        try {
+            List<PaymentsDTO> listOfPayments = paymentsRepository.findAll();
+            if(listOfPayments != null && listOfPayments.size() > 0) {
+                listOfPayments.forEach(payments -> {
+                    PaymentsDetail paymentsResponse = new PaymentsDetail();
+                    PackageResponse packageResponse = new PackageResponse();
+                    packageResponse.setPackageId(payments.getPackageInfo().getId());
+                    packageResponse.setPackageName(payments.getPackageInfo().getPackageName());
+                    packageResponse.setPackageAmount(payments.getPackageInfo().getPackageAmount());
+                    packageResponse.setPackageAmountIncludingGST(payments.getPackageInfo().getPackageAmountIncludingGST());
+                    packageResponse.setPackageDescription(payments.getPackageInfo().getPackageDescription());
+                    packageResponse.setPackageSpeed(payments.getPackageInfo().getPackageSpeed());
+                    paymentsResponse.setPaymentId(payments.getId());
+                    paymentsResponse.setPackageInfo(packageResponse);
+                    BeanUtils.copyProperties(payments, paymentsResponse);
+                    response.getPayments().add(paymentsResponse);
+
+                });
+                response.setResponseMessage("SUCCESS");
+                response.setResponseCode("000");
+                response.setSuccess(true);
+            }
+            else {
+                response.setResponseMessage("No Payments Available at the moment");
+                response.setResponseCode(ErrorCodeConstants.PaymentErrorCode.NO_PAYMENT_AVAILABLE);
+                response.setSuccess(false);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            log.info("::: Error Occurred while Fetching the Payments :::");
+            response.setResponseMessage(e.getMessage());
+            response.setResponseCode(ErrorCodeConstants.PaymentErrorCode.FETCH_PAYMENT_FAILED);
+            response.setSuccess(false);
+        }
+        log.info("::: Fetching Payments Start :::");
+        return response;
     }
 
     @Override

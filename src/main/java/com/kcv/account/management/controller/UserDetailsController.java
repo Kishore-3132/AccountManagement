@@ -27,8 +27,8 @@ public class UserDetailsController {
     }
 
     @GetMapping("/getAllUsers")
-    public ResponseEntity<List<UserDetailsResponse>> getAllDetails() {
-        List<UserDetailsResponse> response = userService.getAllUsers();
+    public ResponseEntity<UserDetailsResponse> getAllDetails() {
+        UserDetailsResponse response = userService.getAllUsers();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
     @PutMapping("/editUser/{id}")

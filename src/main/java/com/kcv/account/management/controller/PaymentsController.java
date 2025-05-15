@@ -27,8 +27,8 @@ public class PaymentsController {
     }
 
     @GetMapping("/getAllPayments")
-    public ResponseEntity<List<PaymentsResponse>> getAllDetails() {
-        List<PaymentsResponse> response = paymentsService.getAllPayments();
+    public ResponseEntity<PaymentsResponse> getAllDetails() {
+        PaymentsResponse response = paymentsService.getAllPayments();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
