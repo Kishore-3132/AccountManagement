@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IErrorMappingRepository extends JpaRepository<ErrorMappingDTO, Integer>{
 
-	public ErrorMappingDTO findByCode(String code);
+	ErrorMappingDTO findByCode(String code);
 }

@@ -16,4 +16,5 @@ public interface IPaymentsService {
     public PaymentsResponse deletePayments(PaymentsRequest request);
 
 //    public PaymentsResponse editPayments(PaymentsRequest request);
+    public PaymentsResponse getCustomerPayments(PaymentsRequest request);
 }

@@ -1,6 +1,7 @@
 package com.kcv.account.management.controller;
 
 import com.kcv.account.management.dto.common.CommonResponse;
+import com.kcv.account.management.dto.customer.CustomerDetail;
 import com.kcv.account.management.dto.payments.PaymentsRequest;
 import com.kcv.account.management.dto.payments.PaymentsResponse;
 import com.kcv.account.management.service.ICommonService;
@@ -62,6 +63,26 @@ public class PaymentsController {
         paymentsRequest.setPaymentId(id);
         PaymentsResponse response = paymentsService.deletePayments(paymentsRequest);
 
+        if(response.getSuccess()) {
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+        else {
+            PaymentsResponse errorResponse = new PaymentsResponse();
+            CommonResponse error = commonService.getErrorCodeDescription(response.getResponseCode());
+            errorResponse.setResponseMessage(error.getResponseMessage());
+            errorResponse.setResponseCode(error.getResponseCode());
+            errorResponse.setSuccess(false);
+            return new ResponseEntity<>(errorResponse, HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/customerPayments")
+    public ResponseEntity<PaymentsResponse> customerPayments(@RequestParam("id") Integer id) {
+        PaymentsRequest paymentsRequest = new PaymentsRequest();
+        CustomerDetail customer = new CustomerDetail();
+        customer.setId(id);
+        paymentsRequest.setCustomer(customer);
+        PaymentsResponse response = paymentsService.getCustomerPayments(paymentsRequest);
         if(response.getSuccess()) {
             return new ResponseEntity<>(response, HttpStatus.OK);
         }

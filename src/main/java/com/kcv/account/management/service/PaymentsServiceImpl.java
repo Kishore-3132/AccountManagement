@@ -2,6 +2,7 @@ package com.kcv.account.management.service;
 
 import com.kcv.account.management.dto.common.ErrorCodeConstants;
 import com.kcv.account.management.dto.customer.CustomerDetail;
+import com.kcv.account.management.dto.entity.CustomerDTO;
 import com.kcv.account.management.dto.entity.PaymentsDTO;
 import com.kcv.account.management.dto.packages.PackageDetail;
 import com.kcv.account.management.dto.payments.PaymentsDetail;
@@ -98,5 +99,59 @@ public class PaymentsServiceImpl implements IPaymentsService {
         }
         log.info("::: Payment Deletion End :::");
         return paymentsResponse;
+    }
+
+    @Override
+    public PaymentsResponse getCustomerPayments(PaymentsRequest request) {
+        log.info("::: Fetching Payments for Particular Customer Start :::");
+        PaymentsResponse response = new PaymentsResponse();
+        response.setPayments(new ArrayList<>());
+        try {
+            CustomerDTO customerDTO = new CustomerDTO();
+            customerDTO.setId(request.getCustomer().getId());
+            List<PaymentsDTO> listOfPayments = paymentsRepository.findByCustomer(customerDTO);
+            if(listOfPayments != null && listOfPayments.size() > 0) {
+                listOfPayments.forEach(payments -> {
+                    PaymentsDetail paymentsResponse = new PaymentsDetail();
+
+                    PackageDetail packageResponse = new PackageDetail();
+                    packageResponse.setPackageId(payments.getPackageInfo().getId());
+                    packageResponse.setPackageName(payments.getPackageInfo().getPackageName());
+                    packageResponse.setPackageAmount(payments.getPackageInfo().getPackageAmount());
+                    packageResponse.setPackageAmountIncludingGST(payments.getPackageInfo().getPackageAmountIncludingGST());
+                    packageResponse.setPackageDescription(payments.getPackageInfo().getPackageDescription());
+                    packageResponse.setPackageSpeed(payments.getPackageInfo().getPackageSpeed());
+                    paymentsResponse.setPackageInfo(packageResponse);
+
+                    CustomerDetail customer = new CustomerDetail();
+                    customer.setId(payments.getCustomer().getId());
+                    customer.setCustomerId(payments.getCustomer().getCustomerId());
+                    customer.setCustomerName(payments.getCustomer().getCustomerName());
+                    response.setCustomer(customer);
+
+                    paymentsResponse.setPaymentId(payments.getId());
+                    BeanUtils.copyProperties(payments, paymentsResponse);
+                    response.getPayments().add(paymentsResponse);
+
+                });
+                response.setResponseMessage("SUCCESS");
+                response.setResponseCode("000");
+                response.setSuccess(true);
+            }
+            else {
+                response.setResponseMessage("No Payments Available at the moment for the Cutsomer");
+                response.setResponseCode(ErrorCodeConstants.PaymentErrorCode.NO_PAYMENT_AVAILABLE);
+                response.setSuccess(false);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            log.info("::: Error Occurred while Fetching the Payments :::");
+            response.setResponseMessage(e.getMessage());
+            response.setResponseCode(ErrorCodeConstants.PaymentErrorCode.FETCH_PAYMENT_FAILED);
+            response.setSuccess(false);
+        }
+        log.info("::: Fetching Payments End :::");
+        return response;
     }
 }
