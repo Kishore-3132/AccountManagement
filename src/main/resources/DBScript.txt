@@ -7,7 +7,6 @@ INSERT INTO USER_DETAILS (id, gender, mobile_number, password, status, user_full
 PACKAGE_INSERT:
 INSERT INTO PACKAGE (id, package_amount, package_amount_incl_gst, package_description, package_name, package_speed) VALUES (1, 1000.00, 1180.00, '1 Month 100Mbps plan', '1_Month_100Mbps', '100');
 
-
 ERROR CODE AND DESCRIPTION:
 
 INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'CUST_001', 'Error Occurred While Customer Creation Please try again');

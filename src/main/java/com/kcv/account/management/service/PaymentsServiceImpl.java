@@ -1,8 +1,9 @@
 package com.kcv.account.management.service;
 
 import com.kcv.account.management.dto.common.ErrorCodeConstants;
+import com.kcv.account.management.dto.customer.CustomerDetail;
 import com.kcv.account.management.dto.entity.PaymentsDTO;
-import com.kcv.account.management.dto.packages.PackageResponse;
+import com.kcv.account.management.dto.packages.PackageDetail;
 import com.kcv.account.management.dto.payments.PaymentsDetail;
 import com.kcv.account.management.dto.payments.PaymentsRequest;
 import com.kcv.account.management.dto.payments.PaymentsResponse;
@@ -37,15 +38,23 @@ public class PaymentsServiceImpl implements IPaymentsService {
             if(listOfPayments != null && listOfPayments.size() > 0) {
                 listOfPayments.forEach(payments -> {
                     PaymentsDetail paymentsResponse = new PaymentsDetail();
-                    PackageResponse packageResponse = new PackageResponse();
+
+                    PackageDetail packageResponse = new PackageDetail();
                     packageResponse.setPackageId(payments.getPackageInfo().getId());
                     packageResponse.setPackageName(payments.getPackageInfo().getPackageName());
                     packageResponse.setPackageAmount(payments.getPackageInfo().getPackageAmount());
                     packageResponse.setPackageAmountIncludingGST(payments.getPackageInfo().getPackageAmountIncludingGST());
                     packageResponse.setPackageDescription(payments.getPackageInfo().getPackageDescription());
                     packageResponse.setPackageSpeed(payments.getPackageInfo().getPackageSpeed());
-                    paymentsResponse.setPaymentId(payments.getId());
                     paymentsResponse.setPackageInfo(packageResponse);
+
+                    CustomerDetail customer = new CustomerDetail();
+                    customer.setId(payments.getCustomer().getId());
+                    customer.setCustomerId(payments.getCustomer().getCustomerId());
+                    customer.setCustomerName(payments.getCustomer().getCustomerName());
+                    paymentsResponse.setCustomer(customer);
+
+                    paymentsResponse.setPaymentId(payments.getId());
                     BeanUtils.copyProperties(payments, paymentsResponse);
                     response.getPayments().add(paymentsResponse);
 

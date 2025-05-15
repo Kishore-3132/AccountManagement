@@ -1,12 +1,9 @@
 package com.kcv.account.management.dto.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 import lombok.Data;
@@ -39,5 +36,7 @@ public class CustomerDTO {
 
     @Column(name = "Address", nullable = false)
     private String address;
-
+//
+//    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<PaymentsDTO> payments;
 }

@@ -1,6 +1,8 @@
 package com.kcv.account.management.dto.payments;
 
 import com.kcv.account.management.dto.common.CommonResponse;
+import com.kcv.account.management.dto.customer.CustomerDetail;
+import com.kcv.account.management.dto.packages.PackageDetail;
 import com.kcv.account.management.dto.packages.PackageResponse;
 import lombok.Data;
 
@@ -17,7 +19,8 @@ public class PaymentsResponse extends CommonResponse{
     private LocalDateTime paymentDate;
     private String modeOfPayment;
     private String referenceNumber;
-    private PackageResponse packageInfo;
+    private PackageDetail packageInfo;
+    private CustomerDetail customer;
     private List<PaymentsDetail> payments;
 
 }

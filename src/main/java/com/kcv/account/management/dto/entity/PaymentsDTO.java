@@ -31,4 +31,8 @@ public class PaymentsDTO {
     @JoinColumn(name = "PACKAGE_ID", nullable = false)
     private PackageDTO packageInfo;
 
+    @OneToOne
+    @JoinColumn(name = "CUSTOMER_ID", nullable = false)
+    private CustomerDTO customer;
+
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import com.kcv.account.management.dto.common.CommonResponse;
 import com.kcv.account.management.dto.enums.AccountStatusEnum;
 import com.kcv.account.management.dto.enums.GenderEnum;
+import com.kcv.account.management.dto.payments.PaymentsDetail;
 import lombok.Data;
 
 @Data
@@ -19,6 +20,6 @@ public class CustomerResponse extends CommonResponse {
     private LocalDate installationDate;
     private AccountStatusEnum status;
     private String address;
-    private List<CustomerDetail> customer;
+    private List<CustomerDetail> customers;
 
 }

@@ -59,7 +59,7 @@ public class CustomerServiceImpl implements ICustomerService {
         log.info("::: Fetching Customers Start :::");
 
         CustomerResponse response = new CustomerResponse();
-        response.setCustomer(new ArrayList<>());
+        response.setCustomers(new ArrayList<>());
         try {
             List<CustomerDTO> listOfCustomer = customerRepository.findAll();
 
@@ -69,7 +69,7 @@ public class CustomerServiceImpl implements ICustomerService {
                     BeanUtils.copyProperties(customer, customerResponse);
                     customerResponse.setGender(GenderEnum.valueOf(customer.getGender()));
                     customerResponse.setStatus(AccountStatusEnum.valueOf(customer.getStatus()));
-                    response.getCustomer().add(customerResponse) ;
+                    response.getCustomers().add(customerResponse) ;
                 });
                 response.setResponseMessage("SUCCESS");
                 response.setResponseCode("000");

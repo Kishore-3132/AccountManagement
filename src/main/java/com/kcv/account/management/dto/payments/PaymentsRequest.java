@@ -1,7 +1,8 @@
 package com.kcv.account.management.dto.payments;
 
 import com.kcv.account.management.dto.common.CommonRequest;
-import com.kcv.account.management.dto.packages.PackageResponse;
+import com.kcv.account.management.dto.customer.CustomerDetail;
+import com.kcv.account.management.dto.packages.PackageDetail;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -16,6 +17,6 @@ public class PaymentsRequest extends CommonRequest {
     private LocalDateTime paymentDate;
     private String modeOfPayment;
     private String referenceNumber;
-    private PackageResponse packageInfo;
-
+    private PackageDetail packageInfo;
+    private CustomerDetail customer;
 }
