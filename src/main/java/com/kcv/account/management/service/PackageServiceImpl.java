@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -67,8 +66,9 @@ public class PackageServiceImpl implements IPackageService {
 
     @Override
     public PackageResponse getAllPackages() {
-        PackageResponse packageResponse = new PackageResponse();
         log.info("::: Fetching Packages Start :::");
+        PackageResponse packageResponse = new PackageResponse();
+        packageResponse.setPackages(new ArrayList<>());
         try {
             List<PackageDTO> listOfPackages = packageRepository.findAll();
             if(listOfPackages != null && listOfPackages.size() > 0 ) {

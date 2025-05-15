@@ -59,6 +59,7 @@ public class UserDetailsServiceImpl implements IUserDetailsService {
     public UserDetailsResponse getAllUsers() {
         log.info("::: Fetching Users Start :::");
         UserDetailsResponse response = new UserDetailsResponse();
+        response.setUsers(new ArrayList<>());
         try {
 
             List<UserDetailsDTO> listOfUserDetails = userRepository.findAll();

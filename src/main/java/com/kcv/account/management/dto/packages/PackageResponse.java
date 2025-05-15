@@ -1,12 +1,9 @@
 package com.kcv.account.management.dto.packages;
 
 import com.kcv.account.management.dto.common.CommonResponse;
-import com.kcv.account.management.dto.enums.AccountStatusEnum;
-import com.kcv.account.management.dto.enums.GenderEnum;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.List;
 
 @Data

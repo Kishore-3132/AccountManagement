@@ -31,6 +31,7 @@ public class PaymentsServiceImpl implements IPaymentsService {
     public PaymentsResponse getAllPayments() {
         log.info("::: Fetching Payments Start :::");
         PaymentsResponse response = new PaymentsResponse();
+        response.setPayments(new ArrayList<>());
         try {
             List<PaymentsDTO> listOfPayments = paymentsRepository.findAll();
             if(listOfPayments != null && listOfPayments.size() > 0) {
@@ -66,7 +67,7 @@ public class PaymentsServiceImpl implements IPaymentsService {
             response.setResponseCode(ErrorCodeConstants.PaymentErrorCode.FETCH_PAYMENT_FAILED);
             response.setSuccess(false);
         }
-        log.info("::: Fetching Payments Start :::");
+        log.info("::: Fetching Payments End :::");
         return response;
     }
 
