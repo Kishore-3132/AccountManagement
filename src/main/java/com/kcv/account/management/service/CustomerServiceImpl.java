@@ -93,7 +93,7 @@ public class CustomerServiceImpl implements ICustomerService {
     }
 
     @Override
-    public CustomerResponse deleteCustomer(CustomerDTO request) {
+    public CustomerResponse deleteCustomer(CustomerRequest request) {
         // TODO Auto-generated method stub
         return null;
     }

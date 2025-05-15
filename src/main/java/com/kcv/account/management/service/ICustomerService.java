@@ -13,7 +13,7 @@ public interface ICustomerService {
 
     public CustomerResponse getAllCustomers();
 
-    public CustomerResponse deleteCustomer(CustomerDTO request);
+    public CustomerResponse deleteCustomer(CustomerRequest request);
 
     public CustomerResponse editCustomer(CustomerRequest request);
 }
