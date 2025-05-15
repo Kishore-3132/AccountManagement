@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 @Data
 @Entity
-@Table(name = "ERROR_MAPPING")
+@Table(name = "ERROR_MAPPING", uniqueConstraints={@UniqueConstraint(columnNames={"CODE"})})
 public class ErrorMappingDTO {
     @Id
     @GeneratedValue
