@@ -1,7 +1,9 @@
 package com.kcv.account.management.controller;
 
+import com.kcv.account.management.dto.common.CommonResponse;
 import com.kcv.account.management.dto.payments.PaymentsRequest;
 import com.kcv.account.management.dto.payments.PaymentsResponse;
+import com.kcv.account.management.service.ICommonService;
 import com.kcv.account.management.service.IPaymentsService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +21,39 @@ public class PaymentsController {
     @Autowired
     private IPaymentsService paymentsService;
 
+    @Autowired
+    private ICommonService commonService;
+
     @PostMapping("/addPayments")
     public ResponseEntity<PaymentsResponse> addPayments(@RequestBody PaymentsRequest request) {
         PaymentsResponse response = paymentsService.addPayments(request);
-
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        if(response.getSuccess()) {
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+        else {
+            PaymentsResponse errorResponse = new PaymentsResponse();
+            CommonResponse error = commonService.getErrorCodeDescription(response.getResponseCode());
+            errorResponse.setResponseMessage(error.getResponseMessage());
+            errorResponse.setResponseCode(error.getResponseCode());
+            errorResponse.setSuccess(false);
+            return new ResponseEntity<>(errorResponse, HttpStatus.OK);
+        }
     }
 
     @GetMapping("/getAllPayments")
     public ResponseEntity<PaymentsResponse> getAllDetails() {
         PaymentsResponse response = paymentsService.getAllPayments();
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        if(response.getSuccess()) {
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+        else {
+            PaymentsResponse errorResponse = new PaymentsResponse();
+            CommonResponse error = commonService.getErrorCodeDescription(response.getResponseCode());
+            errorResponse.setResponseMessage(error.getResponseMessage());
+            errorResponse.setResponseCode(error.getResponseCode());
+            errorResponse.setSuccess(false);
+            return new ResponseEntity<>(errorResponse, HttpStatus.OK);
+        }
     }
 
     @DeleteMapping("/deletePayments/{id}")
@@ -38,7 +62,17 @@ public class PaymentsController {
         paymentsRequest.setPaymentId(id);
         PaymentsResponse response = paymentsService.deletePayments(paymentsRequest);
 
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        if(response.getSuccess()) {
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+        else {
+            PaymentsResponse errorResponse = new PaymentsResponse();
+            CommonResponse error = commonService.getErrorCodeDescription(response.getResponseCode());
+            errorResponse.setResponseMessage(error.getResponseMessage());
+            errorResponse.setResponseCode(error.getResponseCode());
+            errorResponse.setSuccess(false);
+            return new ResponseEntity<>(errorResponse, HttpStatus.OK);
+        }
     }
 
 //    @PutMapping("/editPayments/{id}")

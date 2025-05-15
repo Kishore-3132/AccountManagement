@@ -1,7 +1,10 @@
 package com.kcv.account.management.controller;
 
+import com.kcv.account.management.dto.common.CommonResponse;
+import com.kcv.account.management.dto.customer.CustomerResponse;
 import com.kcv.account.management.dto.packages.PackageRequest;
 import com.kcv.account.management.dto.packages.PackageResponse;
+import com.kcv.account.management.service.ICommonService;
 import com.kcv.account.management.service.IPackageService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +22,55 @@ public class PackageController {
     @Autowired
     private IPackageService packageService;
 
+    @Autowired
+    private ICommonService commonService;
+
     @PostMapping("/addPackage")
     public ResponseEntity<PackageResponse> addPackage(@RequestBody PackageRequest request) {
         PackageResponse response = packageService.addPackage(request);
-
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        if(response.getSuccess())  {
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+        else {
+            PackageResponse errorResponse = new PackageResponse();
+            CommonResponse error = commonService.getErrorCodeDescription(response.getResponseCode());
+            errorResponse.setResponseMessage(error.getResponseMessage());
+            errorResponse.setResponseCode(error.getResponseCode());
+            errorResponse.setSuccess(false);
+            return new ResponseEntity<>(errorResponse, HttpStatus.OK);
+        }
     }
 
     @GetMapping("/getAllPackages")
     public ResponseEntity<PackageResponse> getAllDetails() {
         PackageResponse response = packageService.getAllPackages();
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        if(response.getSuccess()) {
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+        else {
+            PackageResponse errorResponse = new PackageResponse();
+            CommonResponse error = commonService.getErrorCodeDescription(response.getResponseCode());
+            errorResponse.setResponseMessage(error.getResponseMessage());
+            errorResponse.setResponseCode(error.getResponseCode());
+            errorResponse.setSuccess(false);
+            return new ResponseEntity<>(errorResponse, HttpStatus.OK);
+        }
     }
     @PutMapping("/editPackage/{id}")
     public ResponseEntity<PackageResponse> editPackage(@RequestBody PackageRequest request,@PathVariable Integer id) {
         request.setPackageId(id);
         PackageResponse response = packageService.editPackage(request);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        if(response.getSuccess()) {
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+        else {
+            PackageResponse errorResponse = new PackageResponse();
+            CommonResponse error = commonService.getErrorCodeDescription(response.getResponseCode());
+            errorResponse.setResponseMessage(error.getResponseMessage());
+            errorResponse.setResponseCode(error.getResponseCode());
+            errorResponse.setSuccess(false);
+            return new ResponseEntity<>(errorResponse, HttpStatus.OK);
+        }
     }
 
 }
