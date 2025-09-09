@@ -10,7 +10,8 @@ import lombok.Data;
 public class UserDetailsRequest extends CommonRequest {
 
     private Integer userId;
-    private String userName;
+    private String username;
+    private String password;
     private GenderEnum gender;
     private String mobileNumber;
     private String userFullName;

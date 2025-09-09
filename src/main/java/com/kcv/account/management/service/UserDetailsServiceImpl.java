@@ -29,7 +29,7 @@ public class UserDetailsServiceImpl implements IUserDetailsService {
         UserDetailsResponse userResponse = new UserDetailsResponse();
         try {
             UserDetailsDTO user = new UserDetailsDTO();
-            user.setUserName(request.getUserName());
+            user.setUsername(request.getUsername());
             user.setGender(request.getGender().name());
             user.setMobileNumber(request.getMobileNumber());
             user.setStatus(request.getStatus().name());
@@ -106,7 +106,7 @@ public class UserDetailsServiceImpl implements IUserDetailsService {
         try {
             UserDetailsDTO user = new UserDetailsDTO();
             user.setId(request.getUserId());
-            user.setUserName(request.getUserName());
+            user.setUsername(request.getUsername());
             user.setGender(request.getGender().name());
             user.setMobileNumber(request.getMobileNumber());
             user.setStatus(request.getStatus().name());

@@ -12,8 +12,8 @@ public class UserDetailsDTO {
     @GeneratedValue
     private Integer id;
 
-    @Column(name = "USER_NAME", nullable = false)
-    private String userName;
+    @Column(name = "USER_NAME", nullable = false ,unique = true)
+    private String username;
 
     @Column(name = "GENDER", nullable = false)
     private String gender;
