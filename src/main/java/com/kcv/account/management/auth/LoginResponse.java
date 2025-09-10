@@ -6,7 +6,6 @@ import lombok.Data;
 @Data
 public class LoginResponse extends CommonResponse {
 
-    private String username;
     private String role;
 
 }

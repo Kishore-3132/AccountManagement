@@ -7,5 +7,6 @@ public class CommonResponse {
     private String responseCode;
     private String responseMessage;
     private Boolean success;
-
+    private String token;
+    private String username;
 }
