@@ -1,4 +1,3 @@
-/*
 package com.kcv.account.management.security;
 
 import org.springframework.context.annotation.Bean;
@@ -30,8 +29,7 @@ public class SecurityConfig extends org.springframework.security.config.annotati
                 .headers().frameOptions().disable(); // allow frames for H2
     }
 
-    */
-/*@Override
+    /*@Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
@@ -43,8 +41,7 @@ public class SecurityConfig extends org.springframework.security.config.annotati
                 .and()
                 .logout()
                 .permitAll();
-    }*//*
-
+    }*/
 
 
     @Bean
@@ -52,4 +49,3 @@ public class SecurityConfig extends org.springframework.security.config.annotati
         return new BCryptPasswordEncoder();
     }
 }
-*/

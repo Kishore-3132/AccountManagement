@@ -1,4 +1,3 @@
-/*
 package com.kcv.account.management.service;
 
 import com.kcv.account.management.dto.entity.UserDetailsDTO;
@@ -15,7 +14,6 @@ public class AuthUserDetailsService implements UserDetailsService {
     @Autowired
     private IUserDetailsRepository userRepository;
 
-    // Spring Security
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserDetailsDTO user = userRepository.findByUsername(username);
@@ -29,4 +27,3 @@ public class AuthUserDetailsService implements UserDetailsService {
                 .build();
     }
 }
-*/
