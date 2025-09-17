@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class UserDetail extends CommonResponse {
 
-    private Integer userid;
+    private Long userid;
     private String userName;
     private GenderEnum gender;
     private String mobileNumber;

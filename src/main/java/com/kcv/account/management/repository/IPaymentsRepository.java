@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface IPaymentsRepository extends JpaRepository<PaymentsDTO, Integer>{
+public interface IPaymentsRepository extends JpaRepository<PaymentsDTO, Long>{
 
     List<PaymentsDTO> findByCustomer(CustomerDTO customer);
 }

@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Data
 public class PackageRequest extends CommonRequest {
 
-    private Integer packageId;
+    private Long packageId;
     private String packageName;
     private String packageDescription;
     private Integer packageSpeed;

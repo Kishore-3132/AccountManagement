@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kcv.account.management.dto.entity.CustomerDTO;
 @Repository
-public interface ICustomerRepository extends JpaRepository<CustomerDTO, Integer>{
+public interface ICustomerRepository extends JpaRepository<CustomerDTO, Long>{
 
 	
 }

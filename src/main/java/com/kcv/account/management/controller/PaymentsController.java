@@ -60,7 +60,7 @@ public class PaymentsController {
     @DeleteMapping("/deletePayments/{id}")
     public ResponseEntity<PaymentsResponse> deletePayment(@PathVariable Integer id) {
         PaymentsRequest paymentsRequest = new PaymentsRequest();
-        paymentsRequest.setPaymentId(id);
+        paymentsRequest.setPaymentId(Long.valueOf(id));
         PaymentsResponse response = paymentsService.deletePayments(paymentsRequest);
 
         if(response.getSuccess()) {
@@ -80,7 +80,7 @@ public class PaymentsController {
     public ResponseEntity<PaymentsResponse> customerPayments(@RequestParam("id") Integer id) {
         PaymentsRequest paymentsRequest = new PaymentsRequest();
         CustomerDetail customer = new CustomerDetail();
-        customer.setId(id);
+        customer.setId(Long.valueOf(id));
         paymentsRequest.setCustomer(customer);
         PaymentsResponse response = paymentsService.getCustomerPayments(paymentsRequest);
         if(response.getSuccess()) {

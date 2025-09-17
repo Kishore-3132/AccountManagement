@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 public class UserDetailsResponse extends CommonResponse {
 
-    private Integer userid;
+    private Long userid;
     private String userName;
     private GenderEnum gender;
     private String mobileNumber;

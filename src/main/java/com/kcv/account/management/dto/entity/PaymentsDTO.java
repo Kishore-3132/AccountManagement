@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class PaymentsDTO {
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
 
     @Column(name = "AMOUNT", nullable = false)
     private BigDecimal amount;

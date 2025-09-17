@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class SampleRequest {
-    private Integer id;
+    private Long id;
     private String name;
     private String gender;
     private String mobileNo;

@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class CustomerRequest extends CommonRequest {
 
-    private Integer id;
+    private Long id;
     private String customerName;
     private GenderEnum gender;
     private String mobileNumber;

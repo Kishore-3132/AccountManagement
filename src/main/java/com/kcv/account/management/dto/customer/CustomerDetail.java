@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Data
 public class CustomerDetail {
 
-    private Integer id;
+    private Long id;
     private String customerName;
     private GenderEnum gender;
     private String mobileNumber;

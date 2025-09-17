@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 @Data
 public class PackageDetail{
 
-    private Integer packageId;
+    private Long packageId;
     private String packageName;
     private String packageDescription;
     private Integer packageSpeed;

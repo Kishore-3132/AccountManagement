@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 public class PackageResponse extends CommonResponse {
 
-    private Integer packageId;
+    private Long packageId;
     private String packageName;
     private String packageDescription;
     private Integer packageSpeed;

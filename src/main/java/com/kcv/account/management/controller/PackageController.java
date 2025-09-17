@@ -58,7 +58,7 @@ public class PackageController {
     }
     @PutMapping("/editPackage/{id}")
     public ResponseEntity<PackageResponse> editPackage(@RequestBody PackageRequest request,@PathVariable Integer id) {
-        request.setPackageId(id);
+        request.setPackageId(Long.valueOf(id));
         PackageResponse response = packageService.editPackage(request);
         if(response.getSuccess()) {
             return new ResponseEntity<>(response, HttpStatus.OK);

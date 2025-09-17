@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 public class PaymentsResponse extends CommonResponse{
 
-    private Integer paymentId;
+    private Long paymentId;
     private BigDecimal amount;
     private LocalDateTime paymentDate;
     private String modeOfPayment;

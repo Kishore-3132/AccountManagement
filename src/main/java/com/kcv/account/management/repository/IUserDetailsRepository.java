@@ -4,9 +4,11 @@ import com.kcv.account.management.dto.entity.UserDetailsDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface IUserDetailsRepository extends JpaRepository<UserDetailsDTO, Integer>{
+import java.util.Optional;
 
-    UserDetailsDTO findByUsername(String username);
+@Repository
+public interface IUserDetailsRepository extends JpaRepository<UserDetailsDTO, Long>{
+
+    Optional<UserDetailsDTO> findByUsername(String username);
 
 }

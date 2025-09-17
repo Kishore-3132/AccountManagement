@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class UserDetailsRequest extends CommonRequest {
 
-    private Integer userId;
+    private Long userId;
     private String username;
     private String password;
     private GenderEnum gender;

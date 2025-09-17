@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Data
 public class PaymentsDetail extends CommonResponse {
 
-    private Integer paymentId;
+    private Long paymentId;
     private BigDecimal amount;
     private LocalDateTime paymentDate;
     private String modeOfPayment;

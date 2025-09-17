@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class ErrorMappingDTO {
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
 
     @Column(name = "CODE", nullable = false)
     private String code;

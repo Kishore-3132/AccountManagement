@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class PackageDTO {
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
 
     @Column(name = "PACKAGE_NAME", nullable = false)
     private String packageName;

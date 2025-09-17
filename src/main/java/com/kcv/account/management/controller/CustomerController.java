@@ -61,7 +61,7 @@ public class CustomerController {
     }
     @PutMapping("/editCustomer/{id}")
     public ResponseEntity<CustomerResponse> editCustomer(@RequestBody CustomerRequest request,@PathVariable Integer id) {
-        request.setId(id);
+        request.setId(Long.valueOf(id));
         CustomerResponse response = customerService.editCustomer(request);
         if (response.getSuccess()) {
             return new ResponseEntity<>(response, HttpStatus.OK);

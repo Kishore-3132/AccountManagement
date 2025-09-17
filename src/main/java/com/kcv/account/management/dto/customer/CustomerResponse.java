@@ -12,7 +12,7 @@ import lombok.Data;
 @Data
 public class CustomerResponse extends CommonResponse {
 
-    private Integer id;
+    private Long id;
     private String customerName;
     private GenderEnum gender;
     private String mobileNumber;

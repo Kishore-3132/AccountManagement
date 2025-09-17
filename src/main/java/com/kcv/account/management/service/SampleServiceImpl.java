@@ -50,7 +50,7 @@ public class SampleServiceImpl implements ISampleService {
     public SampleResponse deleteData(SampleRequest request) {
         SampleResponse response = new SampleResponse();
         try {
-            demoProjectRepository.deleteById(request.getId());
+            demoProjectRepository.deleteById(request.getId().intValue());
             response.setResponse("Data Succesfully Deleted!!!!");
 
         } catch (Exception e) {

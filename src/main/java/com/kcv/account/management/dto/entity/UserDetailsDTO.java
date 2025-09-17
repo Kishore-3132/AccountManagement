@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class UserDetailsDTO {
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
 
     @Column(name = "USER_NAME", nullable = false ,unique = true)
     private String username;

@@ -14,7 +14,7 @@ import lombok.Data;
 public class SampleDTO {
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
 
     @Column(name = "NAME")
     private String name;

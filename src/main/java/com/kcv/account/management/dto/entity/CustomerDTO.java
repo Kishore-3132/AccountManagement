@@ -14,7 +14,7 @@ import lombok.Data;
 public class CustomerDTO {
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
 
     @Column(name = "CUSTOMER_NAME", nullable = false)
     private String customerName;
