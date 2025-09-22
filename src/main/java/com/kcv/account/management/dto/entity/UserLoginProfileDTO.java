@@ -6,8 +6,8 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "USER_DETAILS")
-public class UserDetailsDTO {
+@Table(name = "USER_LOGIN_PROFILE")
+public class UserLoginProfileDTO {
     @Id
     @GeneratedValue
     private Integer id;

@@ -4,14 +4,12 @@ import com.kcv.account.management.dto.common.CommonResponse;
 import com.kcv.account.management.dto.users.UserDetailsRequest;
 import com.kcv.account.management.dto.users.UserDetailsResponse;
 import com.kcv.account.management.service.ICommonService;
-import com.kcv.account.management.service.IUserDetailsService;
+import com.kcv.account.management.service.IUserLoginProfileService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -19,7 +17,7 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserDetailsController {
     @Autowired
-    private IUserDetailsService userService;
+    private IUserLoginProfileService userService;
 
     @Autowired
     private ICommonService commonService;

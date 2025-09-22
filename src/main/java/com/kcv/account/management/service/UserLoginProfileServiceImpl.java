@@ -1,14 +1,14 @@
 package com.kcv.account.management.service;
 
 import com.kcv.account.management.dto.common.ErrorCodeConstants;
-import com.kcv.account.management.dto.entity.UserDetailsDTO;
+import com.kcv.account.management.dto.entity.UserLoginProfileDTO;
 import com.kcv.account.management.dto.users.UserDetail;
 import com.kcv.account.management.dto.users.UserDetailsRequest;
 import com.kcv.account.management.dto.users.UserDetailsResponse;
 import com.kcv.account.management.dto.enums.AccountStatusEnum;
 import com.kcv.account.management.dto.enums.GenderEnum;
 import com.kcv.account.management.dto.enums.ROLEEnum;
-import com.kcv.account.management.repository.IUserDetailsRepository;
+import com.kcv.account.management.repository.IUserLoginProfileRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +19,16 @@ import java.util.List;
 
 @Service
 @Log4j2
-public class UserDetailsServiceImpl implements IUserDetailsService {
+public class UserLoginProfileServiceImpl implements IUserLoginProfileService {
     @Autowired
-    private IUserDetailsRepository userRepository;
+    private IUserLoginProfileRepository userRepository;
 
     @Override
     public UserDetailsResponse addUser(UserDetailsRequest request) {
         log.info("::: User Creation Start :::");
         UserDetailsResponse userResponse = new UserDetailsResponse();
         try {
-            UserDetailsDTO user = new UserDetailsDTO();
+            UserLoginProfileDTO user = new UserLoginProfileDTO();
             user.setUserName(request.getUserName());
             user.setGender(request.getGender().name());
             user.setMobileNumber(request.getMobileNumber());
@@ -62,7 +62,7 @@ public class UserDetailsServiceImpl implements IUserDetailsService {
         response.setUsers(new ArrayList<>());
         try {
 
-            List<UserDetailsDTO> listOfUserDetails = userRepository.findAll();
+            List<UserLoginProfileDTO> listOfUserDetails = userRepository.findAll();
             if(listOfUserDetails != null && listOfUserDetails.size() > 0 )
             {
                 listOfUserDetails.forEach(user -> {
@@ -94,7 +94,7 @@ public class UserDetailsServiceImpl implements IUserDetailsService {
     }
 
     @Override
-    public UserDetailsResponse deleteUser(UserDetailsDTO request) {
+    public UserDetailsResponse deleteUser(UserLoginProfileDTO request) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -104,7 +104,7 @@ public class UserDetailsServiceImpl implements IUserDetailsService {
         log.info("::: User Editing Start :::");
         UserDetailsResponse userResponse = new UserDetailsResponse();
         try {
-            UserDetailsDTO user = new UserDetailsDTO();
+            UserLoginProfileDTO user = new UserLoginProfileDTO();
             user.setId(request.getUserId());
             user.setUserName(request.getUserName());
             user.setGender(request.getGender().name());

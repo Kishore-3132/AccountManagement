@@ -2,13 +2,22 @@ CUSTOMER_INSERT:
 INSERT INTO CUSTOMER (ID, CUSTOMER_ID, CUSTOMER_NAME, GENDER, INSTALLATION_DATE, MOBILE_NUMBER, STATUS,ADDRESS) VALUES (1, 'kcv_sanjay.d', 'Sanjay', 'MALE', '2022-05-02', '9962095095', 'ACTIVE', 'NO:5/281, Pillayar Street');
 
 USER_INSERT:
-INSERT INTO USER_DETAILS (id, gender, mobile_number, password, status, user_full_name, user_name,role) VALUES (1, 'MALE', '9876543210', 'Pass@123', 'ACTIVE', 'Admin User', 'tic293','USER');
+INSERT INTO USER_LOGIN_PROFILE (id, gender, mobile_number, password, status, user_full_name, user_name,role) VALUES (1, 'MALE', '9876543210', '$2y$10$SBRNyyeGK8yEEWoH/F/spOZRbjNCZEHOPQhGORexWZ3BeKpbzidKm ', 'ACTIVE', 'TIC 293', 'tic293','USER');
+INSERT INTO USER_LOGIN_PROFILE (id, gender, mobile_number, password, status, user_full_name, user_name,role) VALUES (2, 'MALE', '9876543210', '$2a$12$PrRCBJq1i5DSIsTS4qjpc.upj7VXorR6EjDDLnpNl64/p7ne4LISC', 'ACTIVE', 'Admin', 'admin','ADMIN');
 
 PACKAGE_INSERT:
-INSERT INTO PACKAGE (id, package_amount, package_amount_incl_gst, package_description, package_name, package_speed) VALUES (1, 1000.00, 1180.00, '1 Month 100Mbps plan', '1_Month_100Mbps', '100');
+INSERT INTO PACKAGE (id, package_amount, package_amount_incl_gst, package_description, package_name, package_speed) VALUES (1, '599.00', '706.82', '1 Month 100Mbps plan', '1_Month_100Mbps', '100');
+INSERT INTO PACKAGE (id, package_amount, package_amount_incl_gst, package_description, package_name, package_speed) VALUES ((SELECT MAX(id) FROM PACKAGE) + 1, '470.00', '500.00', '1 Month 40Mbps plan', '1_Month_40Mbps', '40');
+INSERT INTO PACKAGE (id, package_amount, package_amount_incl_gst, package_description, package_name, package_speed) VALUES ((SELECT MAX(id) FROM PACKAGE) + 1, '666.00', '786.00', '1 Month 150Mbps plan', '1_Month_150Mbps', '150');
+
+PAYMENTS_INSERT:
+INSERT INTO PAYMENTS (ID,AMOUNT,MODE_OF_PAYMENT,PAYMENT_DATE,REFERENCE_NUMBER,CUSTOMER_ID,PACKAGE_ID) VALUES (1,'555.00','ONLINE','2025-11-11 00:00:00','RMF455245','1','2');
+INSERT INTO PAYMENTS (ID,AMOUNT,MODE_OF_PAYMENT,PAYMENT_DATE,REFERENCE_NUMBER,CUSTOMER_ID,PACKAGE_ID) VALUES ((SELECT MAX(id) FROM PAYMENTS) + 1,'500.00','CASH','2025-11-11 00:00:00','RMF4552478','1','1');
+INSERT INTO PAYMENTS (ID,AMOUNT,MODE_OF_PAYMENT,PAYMENT_DATE,REFERENCE_NUMBER,CUSTOMER_ID,PACKAGE_ID) VALUES ((SELECT MAX(id) FROM PAYMENTS) + 1,'666.00','ONLINE','2025-11-11 00:00:00','RMF45524787','1','2');
 
 ERROR CODE AND DESCRIPTION:
 
+-- Inserting customerErrorCode values
 INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'CUST_001', 'Error Occurred While Customer Creation Please try again');
 INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'CUST_002', 'Error Occurred While Fetching customer Please try again');
 INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'CUST_003', 'Error Occurred While Customer Editing Please try again');
@@ -41,4 +50,6 @@ INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ER
 INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'PYMT_005', 'Payment not found');
 INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'PYMT_006', 'No payment available');
 
-
+-- Inserting LoginErrorCode values
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'LGN_9999', 'Login Failed Please try again');
+INSERT INTO ERROR_MAPPING (id,code, description) VALUES ((SELECT MAX(id) FROM ERROR_MAPPING) + 1, 'LGN_001', 'Invalid Credentials Please try again');
