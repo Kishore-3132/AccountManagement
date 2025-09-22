@@ -17,7 +17,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @Log4j2
-@RequestMapping("/package")
+@RequestMapping("/secure/package")
 public class PackageController {
     @Autowired
     private IPackageService packageService;

@@ -57,7 +57,7 @@ public class PaymentsController {
         }
     }
 
-    @DeleteMapping("/deletePayments/{id}")
+    @DeleteMapping("/secure/deletePayments/{id}")
     public ResponseEntity<PaymentsResponse> deletePayment(@PathVariable Integer id) {
         PaymentsRequest paymentsRequest = new PaymentsRequest();
         paymentsRequest.setPaymentId(Long.valueOf(id));

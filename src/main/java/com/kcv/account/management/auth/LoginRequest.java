@@ -6,4 +6,5 @@ import lombok.Data;
 @Data
 public class LoginRequest extends CommonRequest {
     private String password;
+    private String token;
 }

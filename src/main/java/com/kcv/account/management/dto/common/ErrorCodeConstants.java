@@ -44,4 +44,9 @@ public class ErrorCodeConstants {
         public static final String GENERIC_ERROR = "GEN_9999";
     }
 
+    public static class LoginErrorCode {
+        public static final String LOGIN_FAILED = "LGN_9999";
+        public static final String INVALID_CREDENTIALS = "LGN_001";
+    }
+
 }
