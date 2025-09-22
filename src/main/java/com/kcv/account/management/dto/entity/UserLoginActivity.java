@@ -16,7 +16,7 @@ public class UserLoginActivity  {
 
 	@ManyToOne
 	@JoinColumn(name = "LOGIN_PROFILE_ID", nullable = true)
-	private UserDetailsDTO userLoginProfile;
+	private UserLoginProfileDTO userLoginProfile;
 
 	@Column(name = "SESSION_ID", nullable = false)
 	private String sessionId;
@@ -41,11 +41,11 @@ public class UserLoginActivity  {
         this.id = id;
     }
 
-    public UserDetailsDTO getUserLoginProfile() {
+    public UserLoginProfileDTO getUserLoginProfile() {
         return userLoginProfile;
     }
 
-    public void setUserLoginProfile(UserDetailsDTO userLoginProfile) {
+    public void setUserLoginProfile(UserLoginProfileDTO userLoginProfile) {
         this.userLoginProfile = userLoginProfile;
     }
 

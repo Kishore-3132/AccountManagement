@@ -3,9 +3,9 @@ package com.kcv.account.management.jwt;
 import com.kcv.account.management.auth.LoginRequest;
 import com.kcv.account.management.auth.LoginResponse;
 import com.kcv.account.management.dto.common.ErrorCodeConstants;
-import com.kcv.account.management.dto.entity.UserDetailsDTO;
+import com.kcv.account.management.dto.entity.UserLoginProfileDTO;
 import com.kcv.account.management.dto.entity.UserLoginActivity;
-import com.kcv.account.management.repository.IUserDetailsRepository;
+import com.kcv.account.management.repository.IUserLoginProfileRepository;
 import com.kcv.account.management.repository.IUserLoginActivityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,7 +18,7 @@ import java.util.Optional;
 public class AuthService {
 
     @Autowired
-    private IUserDetailsRepository userRepository;
+    private IUserLoginProfileRepository userRepository;
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -32,7 +32,7 @@ public class AuthService {
 
     public LoginResponse login(String username, String password) {
         LoginResponse response = new LoginResponse();
-        Optional<UserDetailsDTO> userOpt = userRepository.findByUsername(username);
+        Optional<UserLoginProfileDTO> userOpt = userRepository.findByUsername(username);
         if (userOpt.isPresent() && passwordEncoder.matches(password, userOpt.get().getPassword())) {
             String token = jwtUtil.generateToken(username);
             if(token != null && !"".equals(token))
@@ -91,7 +91,7 @@ public class AuthService {
             return response;
         }
     }
-    public UserDetailsDTO register(UserDetailsDTO user) {
+    public UserLoginProfileDTO register(UserLoginProfileDTO user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
