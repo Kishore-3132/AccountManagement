@@ -2,8 +2,8 @@ CUSTOMER_INSERT:
 INSERT INTO CUSTOMER (ID, CUSTOMER_ID, CUSTOMER_NAME, GENDER, INSTALLATION_DATE, MOBILE_NUMBER, STATUS,ADDRESS) VALUES (1, 'kcv_sanjay.d', 'Sanjay', 'MALE', '2022-05-02', '9962095095', 'ACTIVE', 'NO:5/281, Pillayar Street');
 
 USER_INSERT:
-INSERT INTO USER_LOGIN_PROFILE (id, gender, mobile_number, password, status, user_full_name, user_name,role) VALUES (1, 'MALE', '9876543210', '$2y$10$SBRNyyeGK8yEEWoH/F/spOZRbjNCZEHOPQhGORexWZ3BeKpbzidKm ', 'ACTIVE', 'TIC 293', 'tic293','USER');
-INSERT INTO USER_LOGIN_PROFILE (id, gender, mobile_number, password, status, user_full_name, user_name,role) VALUES (2, 'MALE', '9876543210', '$2a$12$PrRCBJq1i5DSIsTS4qjpc.upj7VXorR6EjDDLnpNl64/p7ne4LISC', 'ACTIVE', 'Admin', 'admin','ADMIN');
+INSERT INTO USER_LOGIN_PROFILE (id, gender, mobile_number, password, status, full_name, user_name,role) VALUES (1, 'MALE', '9876543210', '$2y$10$SBRNyyeGK8yEEWoH/F/spOZRbjNCZEHOPQhGORexWZ3BeKpbzidKm ', 'ACTIVE', 'TIC 293', 'tic293','USER');
+INSERT INTO USER_LOGIN_PROFILE (id, gender, mobile_number, password, status, full_name, user_name,role) VALUES (2, 'MALE', '9876543210', '$2a$12$PrRCBJq1i5DSIsTS4qjpc.upj7VXorR6EjDDLnpNl64/p7ne4LISC', 'ACTIVE', 'Admin', 'admin','ADMIN');
 
 PACKAGE_INSERT:
 INSERT INTO PACKAGE (id, package_amount, package_amount_incl_gst, package_description, package_name, package_speed) VALUES (1, '599.00', '706.82', '1 Month 100Mbps plan', '1_Month_100Mbps', '100');
