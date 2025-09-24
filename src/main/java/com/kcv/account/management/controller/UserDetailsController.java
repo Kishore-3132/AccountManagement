@@ -54,9 +54,8 @@ public class UserDetailsController {
             return new ResponseEntity<>(errorResponse, HttpStatus.OK);
         }
     }
-    @PutMapping("/editUser/{id}")
-    public ResponseEntity<UserDetailsResponse> editUser(@RequestBody UserDetailsRequest request,@PathVariable Integer id) {
-        request.setUserId(Long.valueOf(id));
+    @PostMapping("/editUser")
+    public ResponseEntity<UserDetailsResponse> editUser(@RequestBody UserDetailsRequest request) {
         UserDetailsResponse response = userService.editUser(request);
         if(response.getSuccess()) {
             return new ResponseEntity<>(response, HttpStatus.OK);

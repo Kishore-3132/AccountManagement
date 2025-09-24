@@ -1,5 +1,6 @@
 package com.kcv.account.management.jwt;
 
+import com.kcv.account.management.config.AppProperties;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -12,13 +13,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.List;
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {
 
-    private final JwtUtil jwtUtil;
 
-    public JwtFilter(JwtUtil jwtUtil) {
+    private final JwtUtil jwtUtil;
+    private final AppProperties appProperties;
+
+    public JwtFilter(JwtUtil jwtUtil, AppProperties appProperties) {
+        this.appProperties = appProperties;
         this.jwtUtil = jwtUtil;
     }
 
@@ -31,8 +36,9 @@ public class JwtFilter extends OncePerRequestFilter {
         String path = request.getServletPath();
 
         // allow public endpoints
-        if (path.startsWith("/unsecure") || path.startsWith("/swagger-ui") || path.startsWith("/v3/api-docs")
-           || path.startsWith("/h2-console")) {
+        // Below are hardcoded public endpoints, you can also configure them in application.properties
+//        if (path.startsWith("/unsecure") || path.startsWith("/swagger-ui") || path.startsWith("/v3/api-docs")
+        if (appProperties.getPublicEndpoints().stream().anyMatch(path::startsWith)) {
             filterChain.doFilter(request, response);
             return;
         }

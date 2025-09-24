@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "CUSTOMER")
-public class CustomerDTO {
+public class CustomerDTO extends AuditableDTO {
     @Id
     @GeneratedValue
     private Long id;

@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Data
 @Entity
 @Table(name = "PACKAGE")
-public class PackageDTO {
+public class PackageDTO extends AuditableDTO {
     @Id
     @GeneratedValue
     private Long id;

@@ -14,7 +14,7 @@ public class UserDetailsRequest extends CommonRequest {
     private String password;
     private GenderEnum gender;
     private String mobileNumber;
-    private String userFullName;
+    private String fullName;
     private AccountStatusEnum status;
     private ROLEEnum role;
 

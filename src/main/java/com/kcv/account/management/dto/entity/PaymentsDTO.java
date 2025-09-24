@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "PAYMENTS")
-public class PaymentsDTO {
+public class PaymentsDTO extends AuditableDTO {
     @Id
     @GeneratedValue
     private Long id;

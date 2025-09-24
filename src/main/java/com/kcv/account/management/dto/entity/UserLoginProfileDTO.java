@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "USER_LOGIN_PROFILE")
-public class UserLoginProfileDTO {
+public class UserLoginProfileDTO extends AuditableDTO {
     @Id
     @GeneratedValue
     private Long id;
@@ -21,8 +21,8 @@ public class UserLoginProfileDTO {
     @Column(name = "MOBILE_NUMBER", nullable = false)
     private String mobileNumber;
 
-    @Column(name = "USER_FULL_NAME", nullable = false)
-    private String userFullName;
+    @Column(name = "FULL_NAME", nullable = false)
+    private String fullName;
 
     @Column(name = "PASSWORD", nullable = false)
     private String password;

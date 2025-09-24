@@ -7,13 +7,13 @@ import com.kcv.account.management.dto.enums.ROLEEnum;
 import lombok.Data;
 
 @Data
-public class UserDetail extends CommonResponse {
+public class UserDetail {
 
     private Long userid;
-    private String userName;
+    private String username;
     private GenderEnum gender;
     private String mobileNumber;
-    private String userFullName;
+    private String fullName;
     private AccountStatusEnum status;
     private ROLEEnum role;
 }

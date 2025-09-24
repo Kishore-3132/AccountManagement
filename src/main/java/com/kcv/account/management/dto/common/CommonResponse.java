@@ -6,7 +6,7 @@ import lombok.Data;
 public class CommonResponse {
     private String responseCode;
     private String responseMessage;
-    private Boolean success;
+    private Boolean success = false;
     private String token;
     private String username;
 }

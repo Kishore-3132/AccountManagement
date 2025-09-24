@@ -12,16 +12,21 @@ import com.kcv.account.management.repository.IUserLoginProfileRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Log4j2
 public class UserLoginProfileServiceImpl implements IUserLoginProfileService {
     @Autowired
     private IUserLoginProfileRepository userRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public UserDetailsResponse addUser(UserDetailsRequest request) {
@@ -35,6 +40,8 @@ public class UserLoginProfileServiceImpl implements IUserLoginProfileService {
             user.setStatus(request.getStatus().name());
             user.setId(request.getUserId());
             user.setRole(request.getRole().name());
+            user.setFullName(request.getFullName());
+            user.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
             user = userRepository.save(user);
 
             BeanUtils.copyProperties(user, userResponse);
@@ -67,13 +74,15 @@ public class UserLoginProfileServiceImpl implements IUserLoginProfileService {
             {
                 listOfUserDetails.forEach(user -> {
                     UserDetail userResponse = new UserDetail();
-
                     BeanUtils.copyProperties(user, userResponse);
                     userResponse.setUserid(user.getId());
                     userResponse.setGender(GenderEnum.valueOf(user.getGender()));
                     userResponse.setStatus(AccountStatusEnum.valueOf(user.getStatus()));
                     userResponse.setRole(ROLEEnum.valueOf(user.getRole()));
                     response.getUsers().add(userResponse);
+                    response.setResponseMessage("SUCCESS");
+                    response.setResponseCode("000");
+                    response.setSuccess(true);
                 });
             }
             else {
@@ -104,14 +113,22 @@ public class UserLoginProfileServiceImpl implements IUserLoginProfileService {
         log.info("::: User Editing Start :::");
         UserDetailsResponse userResponse = new UserDetailsResponse();
         try {
+            Optional<UserLoginProfileDTO> userDetail = userRepository.findById(request.getUserId());
+            if(!userDetail.isPresent()) {
+                userResponse.setResponseMessage("User Not Found with the ID : " + request.getUserId());
+                userResponse.setResponseCode(ErrorCodeConstants.UserErrorCode.USER_NOT_FOUND);
+                userResponse.setSuccess(false);
+                return userResponse;
+            }
             UserLoginProfileDTO user = new UserLoginProfileDTO();
             user.setId(request.getUserId());
-            user.setUsername(request.getUsername());
-            user.setGender(request.getGender().name());
-            user.setMobileNumber(request.getMobileNumber());
-            user.setStatus(request.getStatus().name());
-            user.setId(request.getUserId());
-            user.setRole(request.getRole().name());
+            user.setUsername(request.getUsername() != null ? request.getUsername() : userDetail.get().getUsername());
+            user.setFullName(request.getFullName() != null ? request.getFullName() : userDetail.get().getFullName());
+            user.setGender(request.getGender() != null ? request.getGender().name() : userDetail.get().getGender());
+            user.setMobileNumber(request.getMobileNumber() != null ? request.getMobileNumber() : userDetail.get().getMobileNumber());
+            user.setStatus(request.getStatus() != null ? request.getStatus().name() : userDetail.get().getStatus());
+            user.setRole(request.getRole() != null ? request.getRole().name() : userDetail.get().getRole());
+            user.setPassword(request.getPassword() != null ? bCryptPasswordEncoder.encode(request.getPassword()) : userDetail.get().getPassword());
             user = userRepository.save(user);
 
             BeanUtils.copyProperties(user, userResponse);
