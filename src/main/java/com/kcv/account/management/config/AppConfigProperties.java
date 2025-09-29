@@ -7,7 +7,7 @@ import java.util.List;
 
 @Component
 @ConfigurationProperties(prefix = "app")  // matches 'app.*' properties
-public class AppProperties {
+public class AppConfigProperties {
 
     private List<String> publicEndpoints;
 
