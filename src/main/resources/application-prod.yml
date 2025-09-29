@@ -1,0 +1,11 @@
+spring:
+  profiles: prod
+
+  datasource:
+    url: jdbc:mysql://prod-server:3306/account_management
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: prod_user
+    password: prod_password
+
+server:
+  port: 8080   # production port

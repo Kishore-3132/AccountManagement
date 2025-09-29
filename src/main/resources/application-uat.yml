@@ -1,0 +1,11 @@
+spring:
+  profiles: uat
+
+  datasource:
+    url: jdbc:mysql://uat-server:3306/account_management
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: uat_user
+    password: uat_password
+
+server:
+  port: 9090   # UAT port
