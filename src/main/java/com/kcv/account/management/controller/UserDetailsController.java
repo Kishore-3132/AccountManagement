@@ -1,8 +1,10 @@
 package com.kcv.account.management.controller;
 
 import com.kcv.account.management.dto.common.CommonResponse;
+import com.kcv.account.management.dto.payments.PaymentsResponse;
 import com.kcv.account.management.dto.users.UserDetailsRequest;
 import com.kcv.account.management.dto.users.UserDetailsResponse;
+import com.kcv.account.management.exception.ErrorResponseMapper;
 import com.kcv.account.management.service.ICommonService;
 import com.kcv.account.management.service.IUserLoginProfileService;
 import lombok.extern.log4j.Log4j2;
@@ -20,7 +22,7 @@ public class UserDetailsController {
     private IUserLoginProfileService userService;
 
     @Autowired
-    private ICommonService commonService;
+    private ErrorResponseMapper errorResponseMapper;
 
     @PostMapping("/addUser")
     public ResponseEntity<UserDetailsResponse> addUser(@RequestBody UserDetailsRequest request) {
@@ -30,12 +32,7 @@ public class UserDetailsController {
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
         else {
-            UserDetailsResponse errorResponse = new UserDetailsResponse();
-            CommonResponse error = commonService.getErrorCodeDescription(response.getResponseCode());
-            errorResponse.setResponseMessage(error.getResponseMessage());
-            errorResponse.setResponseCode(error.getResponseCode());
-            errorResponse.setSuccess(false);
-            return new ResponseEntity<>(errorResponse, HttpStatus.OK);
+            return errorResponseMapper.buildErrorResponse(response.getResponseCode(), UserDetailsResponse.class);
         }
     }
 
@@ -46,12 +43,7 @@ public class UserDetailsController {
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
         else {
-            UserDetailsResponse errorResponse = new UserDetailsResponse();
-            CommonResponse error = commonService.getErrorCodeDescription(response.getResponseCode());
-            errorResponse.setResponseMessage(error.getResponseMessage());
-            errorResponse.setResponseCode(error.getResponseCode());
-            errorResponse.setSuccess(false);
-            return new ResponseEntity<>(errorResponse, HttpStatus.OK);
+            return errorResponseMapper.buildErrorResponse(response.getResponseCode(), UserDetailsResponse.class);
         }
     }
     @PostMapping("/editUser")
@@ -61,12 +53,7 @@ public class UserDetailsController {
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
         else {
-            UserDetailsResponse errorResponse = new UserDetailsResponse();
-            CommonResponse error = commonService.getErrorCodeDescription(response.getResponseCode());
-            errorResponse.setResponseMessage(error.getResponseMessage());
-            errorResponse.setResponseCode(error.getResponseCode());
-            errorResponse.setSuccess(false);
-            return new ResponseEntity<>(errorResponse, HttpStatus.OK);
+            return errorResponseMapper.buildErrorResponse(response.getResponseCode(), UserDetailsResponse.class);
         }
     }
 

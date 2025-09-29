@@ -16,7 +16,7 @@ public class UserDetailsResponse extends CommonResponse {
     private String userName;
     private GenderEnum gender;
     private String mobileNumber;
-    private String userFullName;
+    private String fullName;
     private AccountStatusEnum status;
     private ROLEEnum role;
     private List<UserDetail> users;

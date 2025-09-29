@@ -2,8 +2,10 @@ package com.kcv.account.management.controller;
 
 import com.kcv.account.management.dto.common.CommonResponse;
 import com.kcv.account.management.dto.customer.CustomerDetail;
+import com.kcv.account.management.dto.packages.PackageResponse;
 import com.kcv.account.management.dto.payments.PaymentsRequest;
 import com.kcv.account.management.dto.payments.PaymentsResponse;
+import com.kcv.account.management.exception.ErrorResponseMapper;
 import com.kcv.account.management.service.ICommonService;
 import com.kcv.account.management.service.IPaymentsService;
 import lombok.extern.log4j.Log4j2;
@@ -17,13 +19,13 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @Log4j2
-@RequestMapping("/payments")
+@RequestMapping("/secure/payments")
 public class PaymentsController {
     @Autowired
     private IPaymentsService paymentsService;
 
     @Autowired
-    private ICommonService commonService;
+    private ErrorResponseMapper errorResponseMapper;
 
     @PostMapping("/addPayments")
     public ResponseEntity<PaymentsResponse> addPayments(@RequestBody PaymentsRequest request) {
@@ -32,12 +34,7 @@ public class PaymentsController {
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
         else {
-            PaymentsResponse errorResponse = new PaymentsResponse();
-            CommonResponse error = commonService.getErrorCodeDescription(response.getResponseCode());
-            errorResponse.setResponseMessage(error.getResponseMessage());
-            errorResponse.setResponseCode(error.getResponseCode());
-            errorResponse.setSuccess(false);
-            return new ResponseEntity<>(errorResponse, HttpStatus.OK);
+            return errorResponseMapper.buildErrorResponse(response.getResponseCode(), PaymentsResponse.class);
         }
     }
 
@@ -48,12 +45,7 @@ public class PaymentsController {
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
         else {
-            PaymentsResponse errorResponse = new PaymentsResponse();
-            CommonResponse error = commonService.getErrorCodeDescription(response.getResponseCode());
-            errorResponse.setResponseMessage(error.getResponseMessage());
-            errorResponse.setResponseCode(error.getResponseCode());
-            errorResponse.setSuccess(false);
-            return new ResponseEntity<>(errorResponse, HttpStatus.OK);
+            return errorResponseMapper.buildErrorResponse(response.getResponseCode(), PaymentsResponse.class);
         }
     }
 
@@ -67,12 +59,7 @@ public class PaymentsController {
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
         else {
-            PaymentsResponse errorResponse = new PaymentsResponse();
-            CommonResponse error = commonService.getErrorCodeDescription(response.getResponseCode());
-            errorResponse.setResponseMessage(error.getResponseMessage());
-            errorResponse.setResponseCode(error.getResponseCode());
-            errorResponse.setSuccess(false);
-            return new ResponseEntity<>(errorResponse, HttpStatus.OK);
+            return errorResponseMapper.buildErrorResponse(response.getResponseCode(), PaymentsResponse.class);
         }
     }
 
@@ -87,12 +74,7 @@ public class PaymentsController {
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
         else {
-            PaymentsResponse errorResponse = new PaymentsResponse();
-            CommonResponse error = commonService.getErrorCodeDescription(response.getResponseCode());
-            errorResponse.setResponseMessage(error.getResponseMessage());
-            errorResponse.setResponseCode(error.getResponseCode());
-            errorResponse.setSuccess(false);
-            return new ResponseEntity<>(errorResponse, HttpStatus.OK);
+            return errorResponseMapper.buildErrorResponse(response.getResponseCode(), PaymentsResponse.class);
         }
     }
 

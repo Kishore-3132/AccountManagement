@@ -2,7 +2,9 @@ package com.kcv.account.management.controller;
 
 import java.util.List;
 
+import com.kcv.account.management.auth.LoginResponse;
 import com.kcv.account.management.dto.common.CommonResponse;
+import com.kcv.account.management.exception.ErrorResponseMapper;
 import com.kcv.account.management.service.ICommonService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.BeanUtils;
@@ -24,7 +26,7 @@ public class CustomerController {
     private ICustomerService customerService;
 
     @Autowired
-    private ICommonService commonService;
+    private ErrorResponseMapper errorResponseMapper;
 
     @PostMapping("/addCustomer")
     public ResponseEntity<CustomerResponse> addCustomer(@RequestBody CustomerRequest request) {
@@ -34,12 +36,7 @@ public class CustomerController {
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
         else {
-            CustomerResponse errorResponse = new CustomerResponse();
-            CommonResponse error = commonService.getErrorCodeDescription(response.getResponseCode());
-            errorResponse.setResponseMessage(error.getResponseMessage());
-            errorResponse.setResponseCode(error.getResponseCode());
-            errorResponse.setSuccess(false);
-            return new ResponseEntity<>(errorResponse, HttpStatus.OK);
+            return errorResponseMapper.buildErrorResponse(response.getResponseCode(), CustomerResponse.class);
         }
     }
 
@@ -51,12 +48,7 @@ public class CustomerController {
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
         else {
-            CustomerResponse errorResponse = new CustomerResponse();
-            CommonResponse error = commonService.getErrorCodeDescription(response.getResponseCode());
-            errorResponse.setResponseMessage(error.getResponseMessage());
-            errorResponse.setResponseCode(error.getResponseCode());
-            errorResponse.setSuccess(false);
-            return new ResponseEntity<>(errorResponse, HttpStatus.OK);
+            return errorResponseMapper.buildErrorResponse(response.getResponseCode(), CustomerResponse.class);
         }
     }
     @PutMapping("/editCustomer/{id}")
@@ -67,12 +59,7 @@ public class CustomerController {
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
         else {
-            CustomerResponse errorResponse = new CustomerResponse();
-            CommonResponse error = commonService.getErrorCodeDescription(response.getResponseCode());
-            errorResponse.setResponseMessage(error.getResponseMessage());
-            errorResponse.setResponseCode(error.getResponseCode());
-            errorResponse.setSuccess(false);
-            return new ResponseEntity<>(errorResponse, HttpStatus.OK);
+            return errorResponseMapper.buildErrorResponse(response.getResponseCode(), CustomerResponse.class);
         }
     }
 

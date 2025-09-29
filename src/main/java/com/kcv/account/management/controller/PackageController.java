@@ -4,6 +4,7 @@ import com.kcv.account.management.dto.common.CommonResponse;
 import com.kcv.account.management.dto.customer.CustomerResponse;
 import com.kcv.account.management.dto.packages.PackageRequest;
 import com.kcv.account.management.dto.packages.PackageResponse;
+import com.kcv.account.management.exception.ErrorResponseMapper;
 import com.kcv.account.management.service.ICommonService;
 import com.kcv.account.management.service.IPackageService;
 import lombok.extern.log4j.Log4j2;
@@ -23,7 +24,7 @@ public class PackageController {
     private IPackageService packageService;
 
     @Autowired
-    private ICommonService commonService;
+    private ErrorResponseMapper errorResponseMapper;
 
     @PostMapping("/addPackage")
     public ResponseEntity<PackageResponse> addPackage(@RequestBody PackageRequest request) {
@@ -32,12 +33,7 @@ public class PackageController {
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
         else {
-            PackageResponse errorResponse = new PackageResponse();
-            CommonResponse error = commonService.getErrorCodeDescription(response.getResponseCode());
-            errorResponse.setResponseMessage(error.getResponseMessage());
-            errorResponse.setResponseCode(error.getResponseCode());
-            errorResponse.setSuccess(false);
-            return new ResponseEntity<>(errorResponse, HttpStatus.OK);
+            return errorResponseMapper.buildErrorResponse(response.getResponseCode(), PackageResponse.class);
         }
     }
 
@@ -48,12 +44,7 @@ public class PackageController {
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
         else {
-            PackageResponse errorResponse = new PackageResponse();
-            CommonResponse error = commonService.getErrorCodeDescription(response.getResponseCode());
-            errorResponse.setResponseMessage(error.getResponseMessage());
-            errorResponse.setResponseCode(error.getResponseCode());
-            errorResponse.setSuccess(false);
-            return new ResponseEntity<>(errorResponse, HttpStatus.OK);
+            return errorResponseMapper.buildErrorResponse(response.getResponseCode(), PackageResponse.class);
         }
     }
     @PutMapping("/editPackage/{id}")
@@ -64,12 +55,7 @@ public class PackageController {
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
         else {
-            PackageResponse errorResponse = new PackageResponse();
-            CommonResponse error = commonService.getErrorCodeDescription(response.getResponseCode());
-            errorResponse.setResponseMessage(error.getResponseMessage());
-            errorResponse.setResponseCode(error.getResponseCode());
-            errorResponse.setSuccess(false);
-            return new ResponseEntity<>(errorResponse, HttpStatus.OK);
+            return errorResponseMapper.buildErrorResponse(response.getResponseCode(), PackageResponse.class);
         }
     }
 

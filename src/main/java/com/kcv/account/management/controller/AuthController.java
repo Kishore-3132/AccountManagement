@@ -3,6 +3,7 @@ package com.kcv.account.management.controller;
 import com.kcv.account.management.auth.LoginRequest;
 import com.kcv.account.management.auth.LoginResponse;
 import com.kcv.account.management.dto.common.CommonResponse;
+import com.kcv.account.management.exception.ErrorResponseMapper;
 import com.kcv.account.management.jwt.AuthService;
 import com.kcv.account.management.service.ICommonService;
 import org.springframework.http.HttpStatus;
@@ -17,10 +18,12 @@ import java.util.Map;
 public class AuthController {
     private final AuthService authService;
     private final ICommonService commonService;
+    private final ErrorResponseMapper errorResponseMapper;
 
-    public AuthController(AuthService authService,ICommonService commonService) {
+    public AuthController(AuthService authService,ICommonService commonService, ErrorResponseMapper errorResponseMapper) {
         this.authService = authService;
         this.commonService = commonService;
+        this.errorResponseMapper = errorResponseMapper;
     }
 
 //    @PostMapping("/register")
@@ -35,12 +38,7 @@ public class AuthController {
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
         else {
-            LoginResponse errorResponse = new LoginResponse();
-            CommonResponse error = commonService.getErrorCodeDescription(response.getResponseCode());
-            errorResponse.setResponseMessage(error.getResponseMessage());
-            errorResponse.setResponseCode(error.getResponseCode());
-            errorResponse.setSuccess(false);
-            return new ResponseEntity<>(errorResponse, HttpStatus.OK);
+          return errorResponseMapper.buildErrorResponse(response.getResponseCode(), LoginResponse.class);
         }
     }
 
@@ -54,12 +52,7 @@ public class AuthController {
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
         else {
-            LoginResponse errorResponse = new LoginResponse();
-            CommonResponse error = commonService.getErrorCodeDescription(response.getResponseCode());
-            errorResponse.setResponseMessage(error.getResponseMessage());
-            errorResponse.setResponseCode(error.getResponseCode());
-            errorResponse.setSuccess(false);
-            return new ResponseEntity<>(errorResponse, HttpStatus.OK);
+            return errorResponseMapper.buildErrorResponse(response.getResponseCode(), LoginResponse.class);
         }
     }
 }

@@ -103,7 +103,7 @@ public class UserLoginProfileServiceImpl implements IUserLoginProfileService {
     }
 
     @Override
-    public UserDetailsResponse deleteUser(UserLoginProfileDTO request) {
+    public UserDetailsResponse deleteUser(UserDetailsRequest request) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -147,6 +147,29 @@ public class UserLoginProfileServiceImpl implements IUserLoginProfileService {
         }
         log.info("::: User Editing End :::");
         return userResponse;
+    }
+
+    @Override
+    public UserDetailsResponse findByUsername(String username) {
+        UserDetailsResponse response = new UserDetailsResponse();
+        Optional<UserLoginProfileDTO> userOpt = userRepository.findByUsername(username);
+        if(userOpt.isPresent()) {
+            UserLoginProfileDTO user = userOpt.get();
+
+            BeanUtils.copyProperties(user, response);
+            response.setUserid(user.getId());
+            response.setGender(GenderEnum.valueOf(user.getGender()));
+            response.setStatus(AccountStatusEnum.valueOf(user.getStatus()));
+            response.setRole(ROLEEnum.valueOf(user.getRole()));
+            response.setResponseMessage("SUCCESS");
+            response.setResponseCode("000");
+            response.setSuccess(true);
+        } else {
+            response.setResponseMessage("User Not Found with the Username : " + username);
+            response.setResponseCode(ErrorCodeConstants.UserErrorCode.USER_NOT_FOUND);
+            response.setSuccess(false);
+        }
+        return response;
     }
 
 
