@@ -9,7 +9,7 @@ import com.kcv.account.management.dto.payments.PaymentsDetail;
 import com.kcv.account.management.dto.payments.PaymentsRequest;
 import com.kcv.account.management.dto.payments.PaymentsResponse;
 import com.kcv.account.management.repository.IPaymentsRepository;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Service
-@Log4j2
+@Slf4j
 public class PaymentsServiceImpl implements IPaymentsService {
     @Autowired
     private IPaymentsRepository paymentsRepository;

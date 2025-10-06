@@ -9,7 +9,7 @@ import com.kcv.account.management.dto.enums.AccountStatusEnum;
 import com.kcv.account.management.dto.enums.GenderEnum;
 import com.kcv.account.management.dto.enums.ROLEEnum;
 import com.kcv.account.management.repository.IUserLoginProfileRepository;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Log4j2
+@Slf4j
 public class UserLoginProfileServiceImpl implements IUserLoginProfileService {
     @Autowired
     private IUserLoginProfileRepository userRepository;

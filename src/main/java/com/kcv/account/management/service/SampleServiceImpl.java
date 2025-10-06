@@ -2,7 +2,7 @@ package com.kcv.account.management.service;
 
 import java.util.List;
 
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import com.kcv.account.management.dto.SampleResponse;
 import com.kcv.account.management.repository.ISampleRepository;
 
 @Service
-@Log4j2
+@Slf4j
 public class SampleServiceImpl implements ISampleService {
     @Autowired
     private ISampleRepository demoProjectRepository;

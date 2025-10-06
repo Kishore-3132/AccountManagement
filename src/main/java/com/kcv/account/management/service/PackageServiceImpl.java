@@ -6,7 +6,7 @@ import com.kcv.account.management.dto.packages.PackageDetail;
 import com.kcv.account.management.dto.packages.PackageRequest;
 import com.kcv.account.management.dto.packages.PackageResponse;
 import com.kcv.account.management.repository.IPackageRepository;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,9 +15,10 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
-@Log4j2
+@Slf4j
 public class PackageServiceImpl implements IPackageService {
 
     @Autowired
@@ -105,11 +106,19 @@ public class PackageServiceImpl implements IPackageService {
         log.info("::: Editing Package Start :::");
         PackageResponse  response = new PackageResponse();
         try {
+            Optional<PackageDTO> packageDetail = packageRepository.findById(request.getPackageId());
+            if(!packageDetail.isPresent())
+            {
+                response.setResponseMessage("No Package Available with Package ID : " + request.getPackageId());
+                response.setResponseCode(ErrorCodeConstants.PackageErrorCode.NO_PACKAGE_AVAILABLE);
+                response.setSuccess(false);
+                return response;
+            }
             PackageDTO packageDTO = new PackageDTO();
-            packageDTO.setPackageName(request.getPackageName());
-            packageDTO.setPackageAmount(request.getPackageAmount());
-            packageDTO.setPackageDescription(request.getPackageDescription());
-            packageDTO.setPackageSpeed(request.getPackageSpeed());
+            packageDTO.setPackageName(request.getPackageName() != null ? request.getPackageName() : packageDetail.get().getPackageName());
+            packageDTO.setPackageAmount(request.getPackageAmount() != null ? request.getPackageAmount() : packageDetail.get().getPackageAmount());
+            packageDTO.setPackageDescription(request.getPackageDescription() != null ? request.getPackageDescription() : packageDetail.get().getPackageDescription());
+            packageDTO.setPackageSpeed(request.getPackageSpeed() != null ? request.getPackageSpeed() : packageDetail.get().getPackageSpeed());
             packageDTO.setId(request.getPackageId());
             if(request.getPackageAmount() != null) {
                 BigDecimal taxRate = new BigDecimal("0.18");
@@ -118,6 +127,9 @@ public class PackageServiceImpl implements IPackageService {
                 BigDecimal total = request.getPackageAmount().add(taxAmount);
                 BigDecimal roundedTotal = total.setScale(2, RoundingMode.HALF_UP);
                 packageDTO.setPackageAmountIncludingGST(roundedTotal);
+            } else
+            {
+                packageDTO.setPackageAmountIncludingGST(packageDetail.get().getPackageAmountIncludingGST());
             }
             packageDTO = packageRepository.save(packageDTO);
 

@@ -4,12 +4,16 @@ import com.kcv.account.management.dto.common.CommonResponse;
 import com.kcv.account.management.dto.common.ErrorCodeConstants;
 import com.kcv.account.management.dto.entity.ErrorMappingDTO;
 import com.kcv.account.management.repository.IErrorMappingRepository;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
+import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
+
 @Service
-@Log4j2
+@Slf4j
 public class CommonServiceImpl implements ICommonService {
 
     @Autowired
@@ -19,9 +23,16 @@ public class CommonServiceImpl implements ICommonService {
     public CommonResponse getErrorCodeDescription(String code) {
         CommonResponse response = new CommonResponse();
         try {
-            ErrorMappingDTO errorResponse = errorMappingRepository.findByCode(code);
-            response.setResponseCode(errorResponse.getCode());
-            response.setResponseMessage(errorResponse.getDescription());
+            Optional<ErrorMappingDTO> errorResponse = errorMappingRepository.findByCode(code);
+            if(!errorResponse.isPresent()) {
+                log.info("::: Error Code {} Not Found in DataBase :::", code);
+                response.setResponseCode(ErrorCodeConstants.CommonErrorCode.NO_ERROR_MAPPING_FOUND);
+                response.setResponseMessage("Error Code ["+code+"] Not Found in DataBase");
+                return response;
+            } else {
+                response.setResponseCode(errorResponse.get().getCode());
+                response.setResponseMessage(errorResponse.get().getDescription());
+            }
         } catch (Exception e) {
             log.info("::: Error While Fetching Error Code and Description from DataBase :::");
             e.printStackTrace();

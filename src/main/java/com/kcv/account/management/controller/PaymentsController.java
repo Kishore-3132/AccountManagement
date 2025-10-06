@@ -8,7 +8,7 @@ import com.kcv.account.management.dto.payments.PaymentsResponse;
 import com.kcv.account.management.exception.ErrorResponseMapper;
 import com.kcv.account.management.service.ICommonService;
 import com.kcv.account.management.service.IPaymentsService;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@Log4j2
+@Slf4j
 @RequestMapping("/secure/payments")
 public class PaymentsController {
     @Autowired
@@ -40,6 +40,7 @@ public class PaymentsController {
 
     @GetMapping("/getAllPayments")
     public ResponseEntity<PaymentsResponse> getAllDetails() {
+        log.info("JSON REQUEST: GET method called for /getAllPayments");
         PaymentsResponse response = paymentsService.getAllPayments();
         if(response.getSuccess()) {
             return new ResponseEntity<>(response, HttpStatus.OK);
@@ -49,10 +50,10 @@ public class PaymentsController {
         }
     }
 
-    @DeleteMapping("/secure/deletePayments/{id}")
-    public ResponseEntity<PaymentsResponse> deletePayment(@PathVariable Integer id) {
+    @PostMapping("/secure/deletePayments")
+    public ResponseEntity<PaymentsResponse> deletePayment(@RequestBody PaymentsRequest request) {
         PaymentsRequest paymentsRequest = new PaymentsRequest();
-        paymentsRequest.setPaymentId(Long.valueOf(id));
+        paymentsRequest.setPaymentId(request.getPaymentId());
         PaymentsResponse response = paymentsService.deletePayments(paymentsRequest);
 
         if(response.getSuccess()) {
@@ -63,11 +64,11 @@ public class PaymentsController {
         }
     }
 
-    @GetMapping("/customerPayments")
-    public ResponseEntity<PaymentsResponse> customerPayments(@RequestParam("id") Integer id) {
+    @PostMapping("/customerPayments")
+    public ResponseEntity<PaymentsResponse> customerPayments(@RequestBody PaymentsRequest request) {
         PaymentsRequest paymentsRequest = new PaymentsRequest();
         CustomerDetail customer = new CustomerDetail();
-        customer.setId(Long.valueOf(id));
+        customer.setId(request.getCustomer().getId());
         paymentsRequest.setCustomer(customer);
         PaymentsResponse response = paymentsService.getCustomerPayments(paymentsRequest);
         if(response.getSuccess()) {

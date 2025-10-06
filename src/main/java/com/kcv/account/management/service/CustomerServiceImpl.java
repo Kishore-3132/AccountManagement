@@ -2,10 +2,11 @@ package com.kcv.account.management.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.kcv.account.management.dto.common.ErrorCodeConstants;
 import com.kcv.account.management.dto.customer.CustomerDetail;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ import com.kcv.account.management.dto.enums.AccountStatusEnum;
 import com.kcv.account.management.repository.ICustomerRepository;
 
 @Service
-@Log4j2
+@Slf4j
 public class CustomerServiceImpl implements ICustomerService {
     @Autowired
     private ICustomerRepository customerRepository;
@@ -104,15 +105,22 @@ public class CustomerServiceImpl implements ICustomerService {
         log.info("::: Customer Editing Start :::");
         CustomerResponse customerResponse = new CustomerResponse();
         try {
+            Optional<CustomerDTO> customerDTO = customerRepository.findById(request.getId());
+            if (!customerDTO.isPresent()) {
+                customerResponse.setResponseMessage("Customer Not Found with the ID : " + request.getId());
+                customerResponse.setResponseCode(ErrorCodeConstants.CustomerErrorCode.CUSTOMER_NOT_FOUND);
+                customerResponse.setSuccess(false);
+                return customerResponse;
+            }
             CustomerDTO customer = new CustomerDTO();
             customer.setId(request.getId());
-            customer.setCustomerName(request.getCustomerName());
-            customer.setGender(request.getGender().name());
-            customer.setInstallationDate(request.getInstallationDate());
-            customer.setMobileNumber(request.getMobileNumber());
-            customer.setStatus(request.getStatus().name());
-            customer.setCustomerId(request.getCustomerId());
-            customer.setAddress(request.getCustomerId());
+            customer.setCustomerName(request.getCustomerName() != null ? request.getCustomerName() : customerDTO.get().getCustomerName());
+            customer.setGender(request.getGender() != null ? request.getGender().name() : customerDTO.get().getGender());
+            customer.setInstallationDate(request.getInstallationDate() != null ? request.getInstallationDate() : customerDTO.get().getInstallationDate());
+            customer.setMobileNumber(request.getMobileNumber() != null ? request.getMobileNumber() : customerDTO.get().getMobileNumber());
+            customer.setStatus(request.getStatus() != null ? request.getStatus().name() : customerDTO.get().getStatus());
+            customer.setCustomerId(request.getCustomerId() != null ? request.getCustomerId() : customerDTO.get().getCustomerId());
+            customer.setAddress(request.getAddress() != null ? request.getAddress() : customerDTO.get().getAddress());
             customer = customerRepository.save(customer);
 
             BeanUtils.copyProperties(customer, customerResponse);

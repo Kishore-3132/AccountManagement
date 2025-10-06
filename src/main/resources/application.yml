@@ -2,7 +2,7 @@ spring:
   application:
     name: AccountManagement
   profiles:
-    active: dev   # default profile
+    active: dev  # default profile set to 'dev'. Change to 'uat' or 'prod' as needed.
 
   jpa:
     hibernate:

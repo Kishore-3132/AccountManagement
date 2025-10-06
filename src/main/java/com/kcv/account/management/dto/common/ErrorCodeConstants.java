@@ -9,7 +9,6 @@ public class ErrorCodeConstants {
         public static final String CUSTOMER_DELETION_FAILED = "CUST_004";
         public static final String CUSTOMER_NOT_FOUND = "CUST_005";
         public static final String NO_CUSTOMER_AVAILABLE = "CUST_006";
-        public static final String GENERIC_ERROR = "GEN_9999";
     }
 
     public static class PackageErrorCode {
@@ -42,6 +41,7 @@ public class ErrorCodeConstants {
     public static class CommonErrorCode {
 
         public static final String GENERIC_ERROR = "GEN_9999";
+        public static final String NO_ERROR_MAPPING_FOUND = "GEN_0001";
     }
 
     public static class LoginErrorCode {

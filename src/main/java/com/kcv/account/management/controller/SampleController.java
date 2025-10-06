@@ -6,6 +6,7 @@ import com.kcv.account.management.dto.users.UserDetailsRequest;
 import com.kcv.account.management.dto.users.UserDetailsResponse;
 import com.kcv.account.management.exception.ErrorResponseMapper;
 import com.kcv.account.management.service.IUserLoginProfileService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import com.kcv.account.management.service.ISampleService;
 
 @CrossOrigin
 @RestController
+@Slf4j
 @RequestMapping("/unsecure/sample")
 public class SampleController {
     @Autowired
@@ -38,6 +40,7 @@ public class SampleController {
 
     @GetMapping("/getAllDetails")
     public ResponseEntity<List<SampleDTO>> getAllDetails() {
+        log.info("JSON REQUEST: GET method called for /getAllDetails");
         List<SampleDTO> response = demoProjectService.getAllDetails();
 
         return new ResponseEntity<>(response, HttpStatus.OK);

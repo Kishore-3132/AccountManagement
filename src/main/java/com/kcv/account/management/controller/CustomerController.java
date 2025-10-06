@@ -6,7 +6,7 @@ import com.kcv.account.management.auth.LoginResponse;
 import com.kcv.account.management.dto.common.CommonResponse;
 import com.kcv.account.management.exception.ErrorResponseMapper;
 import com.kcv.account.management.service.ICommonService;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ import com.kcv.account.management.service.ICustomerService;
 
 @CrossOrigin
 @RestController
-@Log4j2
+@Slf4j
 @RequestMapping("/secure/customer")
 public class CustomerController {
     @Autowired
@@ -42,6 +42,7 @@ public class CustomerController {
 
     @GetMapping("/getAllCustomers")
     public ResponseEntity<CustomerResponse> getAllDetails() {
+        log.info("JSON REQUEST: GET method called for /getAllCustomers");
         CustomerResponse response = customerService.getAllCustomers();
 
         if (response.getSuccess()) {

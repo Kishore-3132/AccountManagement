@@ -7,7 +7,7 @@ import com.kcv.account.management.dto.users.UserDetailsResponse;
 import com.kcv.account.management.exception.ErrorResponseMapper;
 import com.kcv.account.management.service.ICommonService;
 import com.kcv.account.management.service.IUserLoginProfileService;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
-@Log4j2
+@Slf4j
 @RequestMapping("/secure/user")
 public class UserDetailsController {
     @Autowired
@@ -38,6 +38,7 @@ public class UserDetailsController {
 
     @GetMapping("/getAllUsers")
     public ResponseEntity<UserDetailsResponse> getAllDetails() {
+        log.info("JSON REQUEST: GET method called for /getAllUsers");
         UserDetailsResponse response = userService.getAllUsers();
         if(response.getSuccess()) {
             return new ResponseEntity<>(response, HttpStatus.OK);

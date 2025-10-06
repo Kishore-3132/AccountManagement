@@ -7,7 +7,7 @@ import com.kcv.account.management.dto.packages.PackageResponse;
 import com.kcv.account.management.exception.ErrorResponseMapper;
 import com.kcv.account.management.service.ICommonService;
 import com.kcv.account.management.service.IPackageService;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@Log4j2
+@Slf4j
 @RequestMapping("/secure/package")
 public class PackageController {
     @Autowired
@@ -39,6 +39,7 @@ public class PackageController {
 
     @GetMapping("/getAllPackages")
     public ResponseEntity<PackageResponse> getAllDetails() {
+        log.info("JSON REQUEST: GET method called for /getAllPackages");
         PackageResponse response = packageService.getAllPackages();
         if(response.getSuccess()) {
             return new ResponseEntity<>(response, HttpStatus.OK);

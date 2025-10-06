@@ -2,16 +2,12 @@ package com.kcv.account.management.controller;
 
 import com.kcv.account.management.auth.LoginRequest;
 import com.kcv.account.management.auth.LoginResponse;
-import com.kcv.account.management.dto.common.CommonResponse;
 import com.kcv.account.management.exception.ErrorResponseMapper;
 import com.kcv.account.management.jwt.AuthService;
 import com.kcv.account.management.service.ICommonService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/unsecure")
@@ -43,7 +39,7 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<LoginResponse> logout(@RequestHeader("Authorization") String authHeader) {
+    public ResponseEntity<LoginResponse> logout(@RequestHeader("Authorization") String authHeader,@RequestBody LoginRequest request) {
         LoginRequest source = new LoginRequest();
         String token = authHeader.replace("Bearer ", "");
         source.setToken((token != null && !"".equals(token)) ? token : "");
