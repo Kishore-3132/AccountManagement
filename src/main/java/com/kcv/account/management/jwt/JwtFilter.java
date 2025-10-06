@@ -1,6 +1,8 @@
 package com.kcv.account.management.jwt;
 
 import com.kcv.account.management.config.AppConfigProperties;
+import com.kcv.account.management.security.MyUser;
+import com.kcv.account.management.security.MyUserDetailsService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -20,8 +22,10 @@ public class JwtFilter extends OncePerRequestFilter {
 
     private final JwtUtil jwtUtil;
     private final AppConfigProperties appConfigProperties;
+    private final MyUserDetailsService myUserDetailsService;
 
-    public JwtFilter(JwtUtil jwtUtil, AppConfigProperties appConfigProperties) {
+    public JwtFilter(JwtUtil jwtUtil, AppConfigProperties appConfigProperties, MyUserDetailsService myUserDetailsService) {
+        this.myUserDetailsService = myUserDetailsService;
         this.appConfigProperties = appConfigProperties;
         this.jwtUtil = jwtUtil;
     }
@@ -56,9 +60,21 @@ public class JwtFilter extends OncePerRequestFilter {
         }
 
         String username = jwtUtil.extractUsername(token);
+
+        // Load MyUser from DB
+        MyUser myUser = (MyUser) myUserDetailsService.loadUserByUsername(username);
+
+
+//        UsernamePasswordAuthenticationToken authentication =
+//                new UsernamePasswordAuthenticationToken(username, null, Collections.emptyList());
+//        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        // Set MyUser as principal
         UsernamePasswordAuthenticationToken authentication =
-                new UsernamePasswordAuthenticationToken(username, null, Collections.emptyList());
+                new UsernamePasswordAuthenticationToken(myUser, null, myUser.getAuthorities());
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         filterChain.doFilter(request, response);

@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
         CommonResponse dbError = commonService.getErrorCodeDescription(errorCode);
         dbError.setResponseCode(errorCode);
         dbError.setResponseMessage(dbError.getResponseMessage());
-        dbError.setErrorMessage("Exception occurred: " + ex.getMessage() + "at " + ex.getStackTrace()[0]);
+        dbError.setErrorMessage("Exception occurred: " + ex.getMessage() + " at " + ex.getStackTrace()[0]);
         dbError.setSuccess(false);
         return ResponseEntity.ok(dbError); // always 200
     }

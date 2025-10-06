@@ -2,9 +2,11 @@ package com.kcv.account.management.controller;
 
 import java.util.List;
 
+import com.kcv.account.management.dto.common.CommonRequest;
 import com.kcv.account.management.dto.users.UserDetailsRequest;
 import com.kcv.account.management.dto.users.UserDetailsResponse;
 import com.kcv.account.management.exception.ErrorResponseMapper;
+import com.kcv.account.management.security.SecurityUtils;
 import com.kcv.account.management.service.IUserLoginProfileService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +22,9 @@ import com.kcv.account.management.service.ISampleService;
 @CrossOrigin
 @RestController
 @Slf4j
-@RequestMapping("/unsecure/sample")
 public class SampleController {
     @Autowired
-    private ISampleService demoProjectService;
+    private ISampleService sampleService;
 
     @Autowired
     private IUserLoginProfileService userLoginProfileService;
@@ -31,29 +32,41 @@ public class SampleController {
     @Autowired
     ErrorResponseMapper errorResponseMapper;
 
-    @PostMapping("/addData")
+    @PostMapping("/unsecure/sample/addData")
     public ResponseEntity<SampleResponse> addData(@RequestBody SampleRequest request) {
-        SampleResponse response = demoProjectService.addData(request);
+        SampleResponse response = sampleService.addData(request);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/getAllDetails")
+    @GetMapping("/unsecure/sample/getAllDetails")
     public ResponseEntity<List<SampleDTO>> getAllDetails() {
         log.info("JSON REQUEST: GET method called for /getAllDetails");
-        List<SampleDTO> response = demoProjectService.getAllDetails();
+        List<SampleDTO> response = sampleService.getAllDetails();
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PostMapping("/deleteData")
+    @GetMapping("/unsecure/sample/hello")
+    public CommonRequest hello() {
+        CommonRequest commonRequest = new CommonRequest();
+        return commonRequest;
+    }
+
+    @GetMapping("/secure/sample/hello")
+    public CommonRequest dummyMethod() {
+        CommonRequest commonRequest = new CommonRequest();
+        return commonRequest;
+    }
+
+    @PostMapping("/unsecure/sample/deleteData")
     public ResponseEntity<SampleResponse> deleteData(@RequestBody SampleRequest request) {
-        SampleResponse response = demoProjectService.deleteData(request);
+        SampleResponse response = sampleService.deleteData(request);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PostMapping("/updateUserPassword")
+    @PostMapping("/unsecure/sample/updateUserPassword")
     public ResponseEntity<UserDetailsResponse> updateUserPassword(@RequestBody UserDetailsRequest request) {
         UserDetailsResponse userDetailsResponse = userLoginProfileService.findByUsername(request.getUsername());
         if (userDetailsResponse.getSuccess()) {
