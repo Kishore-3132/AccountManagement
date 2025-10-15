@@ -1,7 +1,7 @@
 package com.kcv.account.management.jwt;
 
-import com.kcv.account.management.auth.LoginRequest;
-import com.kcv.account.management.auth.LoginResponse;
+import com.kcv.account.management.dto.auth.LoginRequest;
+import com.kcv.account.management.dto.auth.LoginResponse;
 import com.kcv.account.management.dto.common.ErrorCodeConstants;
 import com.kcv.account.management.dto.entity.UserLoginProfileDTO;
 import com.kcv.account.management.dto.entity.UserLoginActivity;

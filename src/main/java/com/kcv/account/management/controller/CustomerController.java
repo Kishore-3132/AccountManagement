@@ -1,13 +1,7 @@
 package com.kcv.account.management.controller;
 
-import java.util.List;
-
-import com.kcv.account.management.auth.LoginResponse;
-import com.kcv.account.management.dto.common.CommonResponse;
 import com.kcv.account.management.exception.ErrorResponseMapper;
-import com.kcv.account.management.service.ICommonService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,7 @@
 package com.kcv.account.management.controller;
 
-import com.kcv.account.management.auth.LoginRequest;
-import com.kcv.account.management.auth.LoginResponse;
+import com.kcv.account.management.dto.auth.LoginRequest;
+import com.kcv.account.management.dto.auth.LoginResponse;
 import com.kcv.account.management.exception.ErrorResponseMapper;
 import com.kcv.account.management.jwt.AuthService;
 import com.kcv.account.management.service.ICommonService;

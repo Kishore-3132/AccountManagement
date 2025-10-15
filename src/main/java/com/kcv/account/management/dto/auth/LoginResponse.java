@@ -1,4 +1,4 @@
-package com.kcv.account.management.auth;
+package com.kcv.account.management.dto.auth;
 
 import com.kcv.account.management.dto.common.CommonResponse;
 import lombok.Data;
